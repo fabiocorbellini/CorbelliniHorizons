@@ -446,14 +446,16 @@
         <!-- Video Placeholder with Parallax Effect -->
         <div class="video-placeholder absolute inset-0">
             <div class="parallax-layer"></div>
-            <!-- 
-            TO IMPLEMENT: Replace this placeholder with actual video background
-            Add <video> tag here with your MP4 sources:
-            <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-                <source src="your-video-1.mp4" type="video/mp4">
+            <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+            <img src="hero-background.jpg" alt="Corbellini Horizons" class="absolute inset-0 w-full h-full object-cover">
+        
+            <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-60">
+            <source src="hero-video.mp4" type="video/mp4">
             </video>
-            Reference Instagram videos for cinematic feel
-            -->
+        
+            <div class="absolute inset-0 bg-black/40"></div>
+    </div>
         </div>
         
         <!-- Dark Overlay -->

@@ -444,11 +444,15 @@
     <!-- Hero Section -->    
 <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0 overflow-hidden bg-black">
-        <video autoplay muted loop playsinline 
-           class="absolute inset-0 w-full h-full object-cover"
-           style="object-fit: cover; width: 100vw; height: 100vh;">
+    <video autoplay 
+       muted 
+       loop 
+       playsinline 
+       webkit-playsinline
+       class="absolute inset-0 w-full h-full object-cover"
+       style="object-fit: cover; width: 100vw; height: 100vh;">
         <source src="hero-video.mp4" type="video/mp4">
-        </video>
+    </video>
     
         <div class="absolute inset-0 bg-black/70 z-10"></div>
     </div>

@@ -444,18 +444,23 @@
     <!-- Hero Section -->    
 <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0 overflow-hidden bg-black">
-    <video autoplay 
-       muted 
-       loop 
-       playsinline 
-       webkit-playsinline
-       poster="hero-background.jpg"
-       class="absolute inset-0 w-full h-full object-cover"
-       style="object-fit: cover; width: 100vw; height: 100vh;">
-      <source src="hero-video.mp4" type="video/mp4">
-    </video>
+        <video autoplay 
+           muted 
+           loop 
+           playsinline 
+           webkit-playsinline
+           poster="hero-poster.jpg"
+           class="absolute inset-0 w-full h-full object-cover"
+           style="object-fit: cover; width: 100vw; height: 100vh;">
+        
+            <source src="hero-video-desktop.mp4" type="video/mp4" media="(min-width: 769px)">
+        
+            <source src="hero-video-mobile.mp4" type="video/mp4">
+        
+            Your browser does not support the video tag.
+        </video>
     
-        <div class="absolute inset-0 bg-black/70 z-10"></div>
+        <div class="absolute inset-0 bg-black/60 z-10"></div>
     </div>
     
     <div class="relative z-10 text-center px-4 max-w-6xl mx-auto pt-32 pb-40">

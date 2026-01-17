@@ -76,8 +76,17 @@ nav {
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
 }
-.hero-media .poster,
+.hero-media .poster {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://media.corbellini.com.br/hero-poster-mobile.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.5);
+  z-index: 0;
+}
 .hero-media video {
   position: absolute;
   inset: 0;
@@ -85,8 +94,8 @@ nav {
   height: 100%;
   object-fit: cover;
   filter: brightness(0.5);
+  z-index: 1;
 }
-.hero-media video { z-index: 1; }
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -191,14 +200,33 @@ footer {
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-media">
-    <div class="poster"
-      style="background-image:url('https://media.corbellini.com.br/hero-poster.jpg');">
-    </div>
-    <video autoplay muted loop playsinline preload="metadata">
-      <source src="https://media.corbellini.com.br/hero-video-desktop.mp4" type="video/mp4">
+
+    <!-- Poster fallback (always visible if video blocked) -->
+    <div class="poster"></div>
+
+    <!-- iOS + Low Power SAFE video -->
+    <video
+      muted
+      loop
+      playsinline
+      preload="none"
+      poster="https://media.corbellini.com.br/hero-poster-mobile.jpg">
+
+      <source
+        src="https://media.corbellini.com.br/hero-video-mobile.mp4"
+        type="video/mp4"
+        media="(max-width: 767px)">
+
+      <source
+        src="https://media.corbellini.com.br/hero-video-desktop.mp4"
+        type="video/mp4"
+        media="(min-width: 768px)">
     </video>
+
   </div>
+
   <div class="hero-overlay"></div>
+
   <div class="hero-content">
     <h1>Don’t Just Visit. <span class="gold">Belong.</span></h1>
     <p>Bespoke Travel & Cinematic Storytelling</p>

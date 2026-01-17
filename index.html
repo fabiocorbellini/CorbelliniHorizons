@@ -103,13 +103,12 @@ nav{
 }
 @media (max-width:768px){
   .hero-content::before{
-    inset: -0.1rem -0.2rem;   /* slim padding */
-    max-height: 80vh;         /* controlled, not full-screen */
+    inset: -0.2rem -0.2rem;   /* slim but tall enough */
     background: linear-gradient(
       to bottom,
       rgba(0,0,0,0.85),       /* darker at top */
       rgba(0,0,0,0.65),
-      rgba(0,0,0,0)           /* fades out cleanly */
+      rgba(0,0,0,0)
     );
     border-radius: 18px;
   }

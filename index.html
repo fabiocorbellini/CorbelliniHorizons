@@ -14,7 +14,6 @@
         html { line-height: 1.5; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         body { margin: 0; background: #0d0d0d; color: #f5f5f5; overflow-x: hidden; }
         
-        /* Layout */
         .relative { position: relative; }
         .absolute { position: absolute; }
         .fixed { position: fixed; }
@@ -23,12 +22,12 @@
         .items-center { align-items: center; }
         .justify-center { justify-content: center; }
         .z-0 { z-index: 0; }
+        .z-5 { z-index: 5; }
         .z-10 { z-index: 10; }
         .w-full { width: 100%; }
         .h-full { height: 100%; }
         .min-h-screen { min-height: 100vh; }
         
-        /* Branding */
         .gold-gradient {
             background: linear-gradient(135deg, #C5A059 0%, #d4b06a 50%, #C5A059 100%);
             -webkit-background-clip: text;
@@ -51,21 +50,21 @@
         
         <div class="absolute inset-0 z-0 bg-black">
             <div class="absolute inset-0 bg-cover bg-center" 
-                 style="background-image: url('https://corbellini.com.br/hero-poster.jpg?v=2'); filter: brightness(0.4);">
+                 style="background-image: url('https://corbellini.com.br/hero-poster.jpg?update=777'); filter: brightness(0.4);">
             </div>
             
             <video autoplay muted loop playsinline preload="auto"
-                   poster="https://corbellini.com.br/hero-poster.jpg?v=2"
+                   poster="https://corbellini.com.br/hero-poster.jpg?update=777"
                    class="hidden md:block absolute inset-0 w-full h-full object-cover"
                    style="filter: brightness(0.4);">
-                <source src="https://corbellini.com.br/hero-video-desktop.mp4?v=2" type="video/mp4">
+                <source src="https://corbellini.com.br/hero-video-desktop.mp4?update=777" type="video/mp4">
             </video>
             
             <video autoplay muted loop playsinline webkit-playsinline preload="auto"
-                   poster="https://corbellini.com.br/hero-poster.jpg?v=2"
+                   poster="https://corbellini.com.br/hero-poster.jpg?update=777"
                    class="block md:hidden absolute inset-0 w-full h-full object-cover"
                    style="filter: brightness(0.4);">
-                <source src="https://corbellini.com.br/hero-video-mobile.mp4?v=2" type="video/mp4">
+                <source src="https://corbellini.com.br/hero-video-mobile.mp4?update=777" type="video/mp4">
             </video>
         </div>
 
@@ -80,10 +79,5 @@
         </div>
     </section>
 
-    <script>
-        // Media query helper for videos
-        const isMobile = window.innerWidth < 768;
-        console.log("Device Mode:", isMobile ? "Mobile" : "Desktop");
-    </script>
 </body>
 </html>

@@ -16,6 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+/* ---------------- RESET ---------------- */
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
@@ -24,86 +25,61 @@ body{
   color:#f5f5f5;
 }
 
-/* Gold gradient text */
+/* ---------------- GOLD TEXT (FIXED) ---------------- */
 .gold-text,
 .brand-gold {
-  background: linear-gradient(
-    135deg,
-    #C5A059,
-    #e0c07a,
-    #C5A059
-  );
+  background: linear-gradient(135deg,#C5A059,#e0c07a,#C5A059);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent; /* critical for Safari */
 }
-  
+
 /* ---------------- NAV ---------------- */
 nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  z-index:30;
+  position:fixed;top:0;width:100%;z-index:30;
   background:rgba(11,11,11,.65);
   backdrop-filter:blur(12px);
 }
 .nav-inner{
-  max-width:1200px;
-  margin:auto;
+  max-width:1200px;margin:auto;
   padding:1rem 1.5rem;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  display:flex;justify-content:space-between;align-items:center
 }
 .nav-inner a{
-  color:#fff;
-  text-decoration:none;
-  margin-left:1.5rem;
-  font-weight:500;
+  color:#fff;text-decoration:none;
+  margin-left:1.5rem;font-weight:500
 }
 .nav-inner a:hover{color:#C5A059}
 
 /* ---------------- HERO ---------------- */
 .hero{
-  position:relative;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  overflow:hidden;
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden
 }
 .hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
+  content:"";position:absolute;inset:0;
   background:url("https://media.corbellini.com.br/hero-poster-mobile.jpg")
     center/cover no-repeat;
-  z-index:0;
+  z-index:0
 }
 .hero video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:1;
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;
+  z-index:1
 }
 .hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
+  content:"";position:absolute;inset:0;
   background:linear-gradient(to bottom,rgba(0,0,0,.15),rgba(0,0,0,.55));
-  z-index:2;
+  z-index:2
 }
 .hero-content{
-  position:relative;
-  z-index:3;
-  max-width:900px;
-  padding:0 1.5rem;
+  position:relative;z-index:3;
+  max-width:900px;padding:0 1.5rem
 }
 .hero-content::before{
-  content:"";
-  position:absolute;
+  content:"";position:absolute;
   inset:-1.2rem -1.2rem;
   background:linear-gradient(
     to bottom,
@@ -111,48 +87,38 @@ nav{
     rgba(0,0,0,.45),
     rgba(0,0,0,0)
   );
-  z-index:-1;
-  border-radius:18px;
+  z-index:-1;border-radius:18px
 }
 @media (max-width:768px){
   .hero-content::before{
-    inset: -0.2rem -0.2rem;   /* slim but tall enough */
-    background: linear-gradient(
+    inset:-0.6rem -0.6rem;
+    background:linear-gradient(
       to bottom,
-      rgba(0,0,0,0.85),       /* darker at top */
-      rgba(0,0,0,0.65),
+      rgba(0,0,0,.85),
+      rgba(0,0,0,.65),
       rgba(0,0,0,0)
     );
-    border-radius: 18px;
   }
 }
-
 .hero h1{
   font-family:'Playfair Display',serif;
   font-size:clamp(2.6rem,6vw,4.6rem);
-  margin-bottom:1.2rem;
+  margin-bottom:1.2rem
 }
-.hero p{
-  font-size:1.25rem;
-  margin-bottom:2rem;
-  color:#e0e0e0;
-}
+.hero p{font-size:1.25rem;margin-bottom:2rem;color:#e0e0e0}
+
 .status-box{
-  display:inline-block;
-  padding:1rem 1.5rem;
+  display:inline-block;padding:1rem 1.5rem;
   border-radius:14px;
   border:1px solid rgba(197,160,89,.5);
   background:rgba(197,160,89,.08);
-  margin-bottom:2.5rem;
+  margin-bottom:2.5rem
 }
 .btn{
-  display:inline-block;
-  padding:1rem 2.6rem;
-  border-radius:999px;
-  font-weight:700;
+  display:inline-block;padding:1rem 2.6rem;
+  border-radius:999px;font-weight:700;
   background:linear-gradient(135deg,#C5A059,#e0c07a,#C5A059);
-  color:#0b0b0b;
-  text-decoration:none;
+  color:#0b0b0b;text-decoration:none
 }
 
 /* ---------------- SECTIONS ---------------- */
@@ -162,15 +128,77 @@ h2{
   font-family:'Playfair Display',serif;
   font-size:clamp(2.2rem,4.5vw,3.4rem);
   margin-bottom:1.5rem;
-  text-align:center;
+  text-align:center
 }
-p{color:#d1d1d1;line-height:1.8}
+.section-subtitle{
+  text-align:center;
+  color:#aaa;
+  max-width:760px;
+  margin:0 auto 4rem
+}
+
+/* ---------------- PROFILE ---------------- */
+.profile-text{
+  max-width:800px;
+  margin:auto;
+  text-align:center;
+  line-height:1.9;
+  color:#d1d1d1
+}
+
+/* ---------------- HORIZONS ---------------- */
+.horizons-grid{
+  display:grid;gap:2rem
+}
+@media(min-width:1024px){
+  .horizons-grid.top{grid-template-columns:repeat(3,1fr)}
+  .horizons-grid.bottom{grid-template-columns:repeat(2,1fr);max-width:900px;margin:auto}
+}
+.card-horizon{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(197,160,89,.25);
+  border-radius:28px;
+  padding:2.5rem
+}
+.card-horizon h3{
+  font-family:'Playfair Display',serif;
+  color:#C5A059;
+  font-size:2rem;
+  margin-bottom:1rem
+}
+.features{color:#bbb;font-size:.95rem}
+.features div{margin-bottom:.4rem}
+
+/* ---------------- GEAR ---------------- */
+.gear-grid{
+  display:grid;gap:2rem;
+}
+@media(min-width:768px){
+  .gear-grid{grid-template-columns:repeat(3,1fr)}
+}
+.gear-item{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(197,160,89,.25);
+  border-radius:20px;
+  padding:2rem;
+  text-align:center
+}
+
+/* ---------------- BOOKING ---------------- */
+form{max-width:600px;margin:2rem auto 0}
+input,select,textarea{
+  width:100%;padding:1rem;margin-bottom:1rem;
+  background:#121212;border:1px solid #333;
+  color:#fff;border-radius:10px
+}
+textarea{min-height:140px}
+input[type=submit]{border:none;cursor:pointer}
 
 /* ---------------- FOOTER ---------------- */
 footer{
   padding:3rem 1.5rem;
   text-align:center;
-  color:#999;
+  color:#999
 }
 footer a{color:#C5A059;text-decoration:none}
 </style>
@@ -178,7 +206,6 @@ footer a{color:#C5A059;text-decoration:none}
 
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <strong class="brand-gold">Corbellini Horizons</strong>
@@ -205,10 +232,12 @@ footer a{color:#C5A059;text-decoration:none}
       Don’t Just Record. <span class="gold-text">Immortalize.</span>
     </h1>
     <p>Professional Photography, Cinematography & Curated Travel</p>
+
     <div class="status-box">
       Currently in: <strong>Houston, TX</strong><br>
       Next Horizons: Cancun (March) · Rio de Janeiro (May)
     </div>
+
     <a href="#booking" class="btn">Book Your Horizon</a>
   </div>
 </section>
@@ -217,8 +246,11 @@ footer a{color:#C5A059;text-decoration:none}
 <section id="profile">
   <div class="container">
     <h2>Profile</h2>
-    <p style="text-align:center;max-width:720px;margin:auto">
-      A curated body of work spanning artists, companies, events, aerials, and immersive travel storytelling.
+    <p class="profile-text">
+      Corbellini Horizons is a multidisciplinary visual studio blending
+      photography, cinematography, aerial perspectives, and curated travel
+      experiences. Every project is approached with intention, precision,
+      and narrative depth.
     </p>
   </div>
 </section>
@@ -227,6 +259,20 @@ footer a{color:#C5A059;text-decoration:none}
 <section id="services">
   <div class="container">
     <h2>The Five Horizons</h2>
+    <p class="section-subtitle">
+      Where artistry, authenticity, and excellence converge
+    </p>
+
+    <div class="horizons-grid top">
+      <div class="card-horizon"><h3>Artists Horizons</h3><div class="features"><div>◆ Album Covers</div><div>◆ Live Performances</div></div></div>
+      <div class="card-horizon"><h3>Events Horizons</h3><div class="features"><div>◆ Proposals</div><div>◆ Milestones</div></div></div>
+      <div class="card-horizon"><h3>Companies Horizons</h3><div class="features"><div>◆ Headshots</div><div>◆ Teams</div></div></div>
+    </div>
+
+    <div class="horizons-grid bottom">
+      <div class="card-horizon"><h3>Travel Horizons</h3><div class="features"><div>◆ Custom Itineraries</div></div></div>
+      <div class="card-horizon"><h3>Aerial Horizons</h3><div class="features"><div>◆ 8K Drone</div></div></div>
+    </div>
   </div>
 </section>
 
@@ -234,9 +280,11 @@ footer a{color:#C5A059;text-decoration:none}
 <section id="gear">
   <div class="container">
     <h2>Gear Setup</h2>
-    <p style="text-align:center;max-width:720px;margin:auto">
-      Cinema-grade cameras, professional audio, and aerial systems selected for reliability and visual excellence.
-    </p>
+    <div class="gear-grid">
+      <div class="gear-item">Cinema Cameras</div>
+      <div class="gear-item">Professional Audio</div>
+      <div class="gear-item">Drones & Stabilization</div>
+    </div>
   </div>
 </section>
 
@@ -244,9 +292,22 @@ footer a{color:#C5A059;text-decoration:none}
 <section id="booking">
   <div class="container">
     <h2>Book Your Horizon</h2>
-    <p style="text-align:center;max-width:720px;margin:auto">
-      Tell me about your project, timeline, and vision.
-    </p>
+    <form action="mailto:corbellini@gmail.com" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <select name="service" required>
+        <option value="">Select Horizon</option>
+        <option>Artists Horizons</option>
+        <option>Events Horizons</option>
+        <option>Companies Horizons</option>
+        <option>Travel Horizons</option>
+        <option>Aerial Horizons</option>
+        <option>Other</option>
+      </select>
+      <input type="date" name="date" required>
+      <textarea name="message" placeholder="Tell us about your project"></textarea>
+      <input type="submit" value="Request Booking" class="btn">
+    </form>
   </div>
 </section>
 

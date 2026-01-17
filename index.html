@@ -445,22 +445,21 @@
 <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0 overflow-hidden bg-black">
         <video autoplay 
-           muted 
-           loop 
-           playsinline 
-           webkit-playsinline
-           poster="https://media.corbellini.com.br/hero-poster.jpg"
-           class="absolute inset-0 w-full h-full object-cover"
-           style="object-fit: cover; width: 100vw; height: 100vh;">
-        
+               muted 
+               loop 
+               playsinline 
+               webkit-playsinline
+               poster="https://media.corbellini.com.br/hero-poster.jpg"
+               class="absolute inset-0 w-full h-full object-cover z-0"
+               style="object-fit: cover; width: 100vw; height: 100vh;">
+    
             <source src="https://media.corbellini.com.br/hero-video-desktop.mp4" type="video/mp4" media="(min-width: 769px)">
-        
             <source src="https://media.corbellini.com.br/hero-video-mobile.mp4" type="video/mp4">
-        
+    
             Your browser does not support the video tag.
         </video>
-    
-        <div class="absolute inset-0 bg-black/40 z-10 pointer-events-none"></div>
+
+        <div class="absolute inset-0 bg-black/50 z-10 pointer-events-none"></div>
     </div>
     
     <div class="relative z-10 text-center px-4 max-w-6xl mx-auto pt-32 pb-40">

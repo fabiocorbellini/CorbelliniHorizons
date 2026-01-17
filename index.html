@@ -4,14 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Corbellini Horizons | Professional Photography, Cinematography & Curated Travel</title>
-<meta name="description" content="Bespoke professional photography, cinematography, events, and curated travel experiences across five horizons.">
+<title>Corbellini Horizons | Photography, Cinematography & Curated Travel</title>
+<meta name="description" content="Professional photography, cinematography, events, aerials, and curated travel experiences across five horizons.">
 
-<!-- Open Graph -->
 <meta property="og:title" content="Corbellini Horizons">
-<meta property="og:description" content="Don’t just record. Immortalize. Professional photography, cinematography & curated travel.">
+<meta property="og:description" content="Don’t just record. Immortalize. Five Horizons of visual storytelling.">
 <meta property="og:image" content="https://media.corbellini.com.br/hero-poster-mobile.jpg">
-<meta property="og:type" content="website">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,37 +88,70 @@ nav{
 }
 
 /* SECTIONS */
-section{padding:6rem 1.5rem}
+section{padding:7rem 1.5rem}
 .container{max-width:1200px;margin:auto}
 h2{
   font-family:'Playfair Display',serif;
-  font-size:clamp(2rem,4vw,3rem);
-  margin-bottom:1.5rem
+  font-size:clamp(2.4rem,5vw,3.6rem);
+  margin-bottom:1.5rem;
+  text-align:center
 }
-p{color:#d1d1d1;line-height:1.8}
+.section-subtitle{
+  text-align:center;
+  color:#aaa;
+  max-width:760px;
+  margin:0 auto 4rem;
+  font-size:1.1rem
+}
 
-/* GRIDS */
-.grid{display:grid;gap:2rem}
-.grid-3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-.card{
+/* HORIZONS */
+.horizons-grid{
+  display:grid;
+  gap:2rem;
+}
+@media(min-width:1024px){
+  .horizons-grid.top{grid-template-columns:repeat(3,1fr)}
+  .horizons-grid.bottom{grid-template-columns:repeat(2,1fr);max-width:900px;margin:auto}
+}
+.card-horizon{
   background:rgba(255,255,255,.03);
   border:1px solid rgba(197,160,89,.25);
-  border-radius:18px;padding:2rem
+  border-radius:28px;
+  padding:2.5rem;
 }
-.icon{font-size:2rem;margin-bottom:1rem}
+.icon-box{
+  width:80px;height:80px;
+  background:linear-gradient(135deg,#C5A059,#e0c07a);
+  border-radius:20px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:2rem
+}
+.icon-box svg{width:38px;height:38px;fill:#1b1b1b}
+.card-horizon h3{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;
+  margin-bottom:1rem;
+  color:#C5A059
+}
+.card-horizon p{margin-bottom:1.5rem}
+.features{
+  font-size:.95rem;
+  color:#bbb;
+  margin-bottom:2rem
+}
+.features div{margin-bottom:.5rem}
+.instagram-btn{
+  display:block;
+  text-align:center;
+  padding:.8rem;
+  border-radius:12px;
+  border:1px solid rgba(197,160,89,.5);
+  color:#C5A059;
+  text-decoration:none
+}
 
-/* GALLERY */
-.gallery{
-  display:grid;gap:1rem;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr))
-}
-.gallery img{
-  width:100%;aspect-ratio:1/1;
-  object-fit:cover;border-radius:14px
-}
-
-/* FORM */
-form{max-width:600px;margin-top:2rem}
+/* BOOKING */
+form{max-width:600px;margin:2rem auto 0}
 input,select,textarea{
   width:100%;padding:1rem;margin-bottom:1rem;
   background:#121212;border:1px solid #333;
@@ -143,77 +174,127 @@ footer a{color:#C5A059;text-decoration:none}
   <div class="nav-inner">
     <strong>Corbellini Horizons</strong>
     <div>
-      <a href="#profile">Profile</a>
-      <a href="#horizons">Horizons</a>
-      <a href="#gear">Gear</a>
+      <a href="#services">Horizons</a>
       <a href="#booking">Booking</a>
     </div>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="home">
+<section class="hero">
   <video autoplay muted loop playsinline preload="metadata">
     <source src="https://media.corbellini.com.br/hero-video-mobile.mp4" media="(max-width:767px)">
     <source src="https://media.corbellini.com.br/hero-video-desktop.mp4" media="(min-width:768px)">
   </video>
   <div class="hero-content">
     <h1>
-      Don’t Just Visit. <span style="color:#C5A059">Belong.</span><br>
-      Don’t Just Record. <span style="color:#C5A059">Immortalize.</span>
+      Don’t Just Visit. Belong.<br>
+      Don’t Just Record. Immortalize.
     </h1>
-    <p>Bespoke Professional Photography, Cinematography & Curated Travel</p>
+    <p>Professional Photography, Cinematography & Curated Travel</p>
     <div class="status-box">
       Currently in: <strong>Houston, TX</strong><br>
       Next Horizons: Cancun (March) · Rio de Janeiro (May)
     </div><br>
-    <a href="#booking" class="btn">Book Your Next Horizon</a>
+    <a href="#booking" class="btn">Book Your Horizon</a>
   </div>
 </section>
 
-<!-- HORIZONS -->
-<section id="horizons">
+<!-- FIVE HORIZONS -->
+<section id="services">
   <div class="container">
-    <h2>Five Horizons</h2>
-    <div class="grid grid-3">
-      <div class="card"><div class="icon">📍</div><h3>Curated Travel</h3></div>
-      <div class="card"><div class="icon">🎥</div><h3>Cinematography</h3></div>
-      <div class="card"><div class="icon">📸</div><h3>Photography</h3></div>
-      <div class="card"><div class="icon">🎉</div><h3>Events Horizons</h3></div>
-      <div class="card"><div class="icon">🕯️</div><h3>Legacy & Archive</h3></div>
+    <h2>The Five Horizons</h2>
+    <p class="section-subtitle">
+      Where artistry, authenticity, and excellence converge across five distinct pillars
+    </p>
+
+    <div class="horizons-grid top">
+      <!-- Artists -->
+      <div class="card-horizon">
+        <div class="icon-box">
+          <svg viewBox="0 0 20 20"><path d="M18 3l-10 2v9a2 2 0 11-1-1.732V5l10-2z"/></svg>
+        </div>
+        <h3>Artists Horizons</h3>
+        <p>Sonic storytelling and creative portraits for musicians and soloists.</p>
+        <div class="features">
+          <div>◆ Album Cover Photography</div>
+          <div>◆ Live Performance Documentation</div>
+          <div>◆ Artist Brand Development</div>
+        </div>
+        <a class="instagram-btn" href="https://www.instagram.com/p/C44XaYqLkoVAM3D10uaTJWZepzf16boBjSwQRA0/" target="_blank">
+          View on Instagram →
+        </a>
+      </div>
+
+      <!-- Events -->
+      <div class="card-horizon">
+        <div class="icon-box">
+          <svg viewBox="0 0 20 20"><path d="M10 18l-7-7a4 4 0 015.656-5.656L10 6l1.344-1.656A4 4 0 0116 11z"/></svg>
+        </div>
+        <h3>Events Horizons</h3>
+        <p>Proposals, anniversaries, and milestone celebrations captured cinematically.</p>
+        <div class="features">
+          <div>◆ Proposal Photography</div>
+          <div>◆ Anniversary Celebrations</div>
+          <div>◆ Birthday & Milestones</div>
+        </div>
+        <a class="instagram-btn" href="https://www.instagram.com/p/DTdpixkEjJK5pQ3Y7oDom4DgfAvTMPH-idaVtg0/" target="_blank">
+          View on Instagram →
+        </a>
+      </div>
+
+      <!-- Companies -->
+      <div class="card-horizon">
+        <div class="icon-box">
+          <svg viewBox="0 0 20 20"><path d="M6 6a3 3 0 116 0 3 3 0 01-6 0zM2 18v-3a4 4 0 014-4h8a4 4 0 014 4v3z"/></svg>
+        </div>
+        <h3>Companies Horizons</h3>
+        <p>Professional on-site headshots and team portraits for modern companies.</p>
+        <div class="features">
+          <div>◆ Executive Headshots</div>
+          <div>◆ Team Portraits</div>
+          <div>◆ Brand Cohesion</div>
+        </div>
+        <a class="instagram-btn" href="https://www.instagram.com/p/DTdrG4LklUtfrccWp0X3gYXKSvON4QgJs-BdVM0/" target="_blank">
+          View on Instagram →
+        </a>
+      </div>
     </div>
-  </div>
-</section>
 
-<!-- PROFILE / GALLERIES -->
-<section id="profile">
-  <div class="container">
-    <h2>Portfolio Highlights</h2>
+    <div class="horizons-grid bottom">
+      <!-- Travel -->
+      <div class="card-horizon">
+        <div class="icon-box">
+          <svg viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16z"/></svg>
+        </div>
+        <h3>Travel Horizons</h3>
+        <p>Bespoke travel planning, translation, and local guiding.</p>
+        <div class="features">
+          <div>◆ Custom Itineraries</div>
+          <div>◆ Cultural Bridge</div>
+          <div>◆ Hidden Gems</div>
+        </div>
+        <a class="instagram-btn" href="https://www.instagram.com/p/DKs6wcaJiwDh3iHeIJGl7ecSBxHDIIU9qrXR340/" target="_blank">
+          View on Instagram →
+        </a>
+      </div>
 
-    <h3>Photography</h3>
-    <div class="gallery">
-      <img src="https://media.corbellini.com.br/sample1.jpg" loading="lazy" alt="Photography sample">
-      <img src="https://media.corbellini.com.br/sample2.jpg" loading="lazy" alt="Photography sample">
-      <img src="https://media.corbellini.com.br/sample3.jpg" loading="lazy" alt="Photography sample">
-    </div>
-
-    <h3 style="margin-top:3rem">Cinematography</h3>
-    <div class="gallery">
-      <img src="https://media.corbellini.com.br/sample4.jpg" loading="lazy" alt="Cinematography sample">
-      <img src="https://media.corbellini.com.br/sample5.jpg" loading="lazy" alt="Cinematography sample">
-      <img src="https://media.corbellini.com.br/sample6.jpg" loading="lazy" alt="Cinematography sample">
-    </div>
-  </div>
-</section>
-
-<!-- GEAR -->
-<section id="gear">
-  <div class="container">
-    <h2>Gear Setup</h2>
-    <div class="grid grid-3">
-      <div class="card"><div class="icon">🎬</div>Cinema-grade cameras</div>
-      <div class="card"><div class="icon">🎧</div>Professional audio</div>
-      <div class="card"><div class="icon">🚁</div>Drones & stabilization</div>
+      <!-- Aerial -->
+      <div class="card-horizon">
+        <div class="icon-box">
+          <svg viewBox="0 0 20 20"><path d="M2 6h10v8H2zM14 8l4-2v8l-4-2z"/></svg>
+        </div>
+        <h3>Aerial Horizons</h3>
+        <p>8K cinematic drone footage and 360° panoramas.</p>
+        <div class="features">
+          <div>◆ 8K Drone Cinematography</div>
+          <div>◆ 360° Panoramas</div>
+          <div>◆ Property & Events</div>
+        </div>
+        <a class="instagram-btn" href="https://www.instagram.com/corbellini/reel/DTdbMnpjID7rUFv-JU-VTQ3YEwLfnd5Q728MIQ0/" target="_blank">
+          View on Instagram →
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -227,11 +308,11 @@ footer a{color:#C5A059;text-decoration:none}
       <input type="email" name="email" placeholder="Email" required>
       <select name="service" required>
         <option value="">Select Horizon</option>
-        <option>Photography</option>
-        <option>Cinematography</option>
-        <option>Curated Travel</option>
+        <option>Artists Horizons</option>
         <option>Events Horizons</option>
-        <option>Legacy & Archive</option>
+        <option>Companies Horizons</option>
+        <option>Travel Horizons</option>
+        <option>Aerial Horizons</option>
         <option>Other</option>
       </select>
       <input type="date" name="date" required>

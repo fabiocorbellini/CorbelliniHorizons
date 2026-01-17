@@ -108,44 +108,27 @@
         </div>
     </nav>
 
-    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0 bg-black">
-            <div class="absolute inset-0 bg-cover bg-center" 
-                 style="background-image: url('https://corbellini.com.br/hero-poster.jpg?v=1.1'); filter: brightness(0.5);">
-            </div>
-            
-            <video id="heroVideoDesktop" autoplay muted loop playsinline preload="auto"
-                   poster="https://corbellini.com.br/hero-poster.jpg?v=1.1"
-                   class="hidden md:block absolute inset-0 w-full h-full object-cover"
-                   style="filter: brightness(0.5);">
-                <source src="https://corbellini.com.br/hero-video-desktop.mp4?v=1.1" type="video/mp4">
-            </video>
-            
-            <video id="heroVideoMobile" autoplay muted loop playsinline webkit-playsinline preload="auto"
-                   poster="https://corbellini.com.br/hero-poster.jpg?v=1.1"
-                   class="block md:hidden absolute inset-0 w-full h-full object-cover"
-                   style="filter: brightness(0.5);">
-                <source src="https://corbellini.com.br/hero-video-mobile.mp4?v=1.1" type="video/mp4">
-            </video>
+<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-cover bg-center" 
+             style="background-image: url('https://corbellini.com.br/hero-poster.jpg?update=101'); filter: brightness(0.5);">
         </div>
         
-        <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black/90 z-5 pointer-events-none"></div>
-            
-        <div class="relative z-10 text-center px-4 max-w-6xl mx-auto pt-32">
-            <h1 class="text-4xl md:text-7xl font-playfair font-black mb-8 leading-tight">
-                Don't Just Visit. <span class="gold-gradient">Belong.</span><br>
-                Don't Just Record. <span class="gold-gradient">Immortalize.</span>
-            </h1>
-            <p class="text-xl md:text-2xl font-light mb-12">Bespoke Travel Guiding & Professional 8K Cinematography.</p>
-            <div class="status-pulse rounded-full px-8 py-4 mb-12 inline-block">
-                <p class="text-sm">📍 <span class="text-champagne font-bold">CURRENTLY:</span> HOUSTON, TX | ✈️ CANCUN (MAR), RIO (MAY)</p>
-            </div>
-            <div class="flex flex-col md:flex-row gap-5 justify-center">
-                <a href="#services" class="btn-champagne">Explore Horizons</a>
-                <a href="#portfolio" class="border-2 border-champagne text-champagne px-10 py-4 rounded-full">View Portfolio</a>
-            </div>
-        </div>
-    </section>
+        <video id="heroVideoDesktop" autoplay muted loop playsinline preload="auto"
+               class="hidden md:block absolute inset-0 w-full h-full object-cover"
+               style="filter: brightness(0.5);">
+            <source src="https://corbellini.com.br/hero-video-desktop.mp4?refresh=101" type="video/mp4">
+        </video>
+        
+        <video id="heroVideoMobile" autoplay muted loop playsinline webkit-playsinline preload="auto"
+               class="block md:hidden absolute inset-0 w-full h-full object-cover"
+               style="filter: brightness(0.5);">
+            <source src="https://corbellini.com.br/hero-video-mobile.mp4?refresh=101" type="video/mp4">
+        </video>
+    </div>
+    
+    <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black/90 z-5 pointer-events-none"></div>
+</section>
 
     <section id="services" class="py-28 px-6 bg-ebony">
         <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">

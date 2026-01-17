@@ -441,23 +441,28 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->    
+<!-- Hero Section -->    
 <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Video Background -->
     <div class="absolute inset-0 z-0 overflow-hidden bg-black">
-        <video autoplay 
-               muted 
-               loop 
-               playsinline 
-               webkit-playsinline
-               poster="https://media.corbellini.com.br/hero-poster.jpg"
-               class="absolute inset-0 w-full h-full object-cover"
-               style="object-fit: cover; width: 100vw; height: 100vh; filter: brightness(0.5);"> <source src="https://media.corbellini.com.br/hero-video-desktop.mp4" type="video/mp4" media="(min-width: 769px)">
-            <source src="https://media.corbellini.com.br/hero-video-mobile.mp4" type="video/mp4">
-    
+        <video 
+            autoplay 
+            muted 
+            loop 
+            playsinline 
+            webkit-playsinline
+            poster="https://media.corbellini.com.br/hero-poster.jpg"
+            class="absolute inset-0 w-full h-full object-cover"
+            style="object-fit: cover; width: 100vw; height: 100vh; filter: brightness(0.5);">
+            <source src="https://media.corbellini.com.br/hero-video-desktop.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
+    
+    <!-- Dark Overlay -->
+    <div class="hero-overlay absolute inset-0"></div>
         
+    <!-- Hero Content -->
     <div class="relative z-10 text-center px-4 max-w-6xl mx-auto pt-32 pb-40">
         <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-playfair font-black mb-8 leading-tight">
             Don't Just Visit. <span class="gold-gradient">Belong.</span><br>
@@ -468,6 +473,7 @@
             Bespoke Travel Guiding & Professional 8K Cinematography.
         </p>
         
+        <!-- Strategic Status Bar -->
         <div class="status-pulse rounded-full px-4 sm:px-8 py-4 mb-12 inline-block max-w-4xl">
             <p class="text-xs sm:text-sm md:text-base font-medium">
                 📍 <span class="text-champagne font-bold">CURRENTLY IN:</span> HOUSTON, TX | 
@@ -476,6 +482,7 @@
             </p>
         </div>
         
+        <!-- CTA Buttons -->
         <div class="flex flex-col sm:flex-row gap-5 justify-center items-center">
             <a href="#services" class="btn-champagne px-10 py-4 rounded-full text-lg font-bold">
                 Explore The Horizons
@@ -486,7 +493,8 @@
         </div>
     </div>
     
-    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
         <svg class="w-6 h-6 text-champagne" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
         </svg>

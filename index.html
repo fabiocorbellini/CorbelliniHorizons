@@ -116,13 +116,13 @@ nav{
   border-radius:28px;
 }
 
-/* Stronger on mobile */
 @media (max-width:768px){
   .hero-content::before{
+    inset:-1rem -1rem; /* smaller box on mobile */
     background:linear-gradient(
       to bottom,
-      rgba(0,0,0,.75),
-      rgba(0,0,0,.45),
+      rgba(0,0,0,.65),
+      rgba(0,0,0,.35),
       rgba(0,0,0,0)
     );
   }

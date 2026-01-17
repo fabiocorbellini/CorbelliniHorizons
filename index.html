@@ -16,78 +16,80 @@
         html { line-height: 1.5; -webkit-text-size-adjust: 100%; -moz-tab-size: 4; tab-size: 4; font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; scroll-behavior: smooth; }
         body { margin: 0; line-height: inherit; background: #1a1a1b; color: #f5f5f5; }
         
-        /* Layout Utilities */
-        .relative { position: relative; }
-        .absolute { position: absolute; }
-        .fixed { position: fixed; }
-        .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
-        .z-0 { z-index: 0; }
-        .z-5 { z-index: 5; }
-        .z-10 { z-index: 10; }
-        .z-20 { z-index: 20; }
-        .z-50 { z-index: 50; }
+        /* Utility Classes */
         .flex { display: flex; }
         .flex-col { flex-direction: column; }
         .items-center { align-items: center; }
         .justify-center { justify-content: center; }
         .justify-between { justify-content: space-between; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .fixed { position: fixed; }
+        .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
         .hidden { display: none; }
-        .overflow-hidden { overflow: hidden; }
-        .min-h-screen { min-height: 100vh; }
+        .z-0 { z-index: 0; }
+        .z-5 { z-index: 5; }
+        .z-10 { z-index: 10; }
+        .z-50 { z-index: 50; }
         .w-full { width: 100%; }
         .h-full { height: 100%; }
-        
-        /* Responsive Breakpoints */
+
         @media (min-width: 768px) {
             .md\:flex { display: flex; }
             .md\:hidden { display: none; }
             .md\:block { display: block; }
-            .md\:text-7xl { font-size: 4.5rem; }
         }
 
-        /* UI Elements */
+        /* Custom Branding Styles from Original */
         .gold-gradient {
             background: linear-gradient(135deg, #C5A059 0%, #d4b06a 50%, #C5A059 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
+        
         .btn-champagne {
             background: linear-gradient(135deg, #C5A059 0%, #d4b06a 50%, #C5A059 100%);
             color: #0d0d0d;
+            font-weight: 600;
             padding: 1rem 2.5rem;
             border-radius: 9999px;
-            font-weight: 700;
             transition: all 0.4s ease;
+            display: inline-block;
         }
 
         .status-pulse {
             background: rgba(197, 160, 89, 0.1);
             border: 1.5px solid rgba(197, 160, 89, 0.4);
-            padding: 1rem 2rem;
-            border-radius: 9999px;
             animation: pulse-border 3s ease-in-out infinite;
         }
-
+        
         @keyframes pulse-border {
             0%, 100% { border-color: rgba(197, 160, 89, 0.4); }
-            50% { border-color: rgba(197, 160, 89, 0.8); }
+            50% { border-color: rgba(197, 160, 89, 0.7); }
         }
 
         .nav-blur {
             backdrop-filter: blur(12px);
-            background: rgba(26, 26, 27, 0.8);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+            background: rgba(26, 26, 27, 0.85);
+            border-bottom: 1px solid rgba(197,160,89,0.15);
         }
 
-        .pointer-events-none { pointer-events: none; }
+        .card-horizon {
+            background: rgba(13,13,13,0.9);
+            border: 1px solid rgba(197,160,89,0.2);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            transition: transform 0.4s ease;
+        }
+        .card-horizon:hover { transform: translateY(-10px); }
     </style>
 </head>
 <body>
     
     <nav class="fixed top-0 left-0 right-0 z-50 nav-blur">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center h-20">
-            <a href="#home" class="text-2xl font-playfair font-black tracking-tight gold-gradient">Corbellini Horizons</a>
+            <a href="#home" class="text-2xl font-playfair font-black gold-gradient">Corbellini Horizons</a>
             
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#about" class="hover:text-champagne transition-colors">About</a>
@@ -95,61 +97,72 @@
                 <a href="#booking" class="btn-champagne py-2 px-6 text-sm">Book Now</a>
             </div>
 
-            <button onclick="toggleMobileMenu()" class="md:hidden text-champagne p-2">
+            <button onclick="toggleMobileMenu()" class="md:hidden text-champagne">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
         </div>
-
         <div id="mobileMenu" class="hidden flex-col bg-ebony p-6 space-y-4 md:hidden">
-            <a href="#about" class="block py-2">About</a>
-            <a href="#services" class="block py-2">Services</a>
-            <a href="#booking" class="btn-champagne block text-center">Book Now</a>
+            <a href="#about" class="block">About</a>
+            <a href="#services" class="block">Services</a>
+            <a href="#booking" class="btn-champagne text-center">Book Now</a>
         </div>
     </nav>
 
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0 bg-black">
             <div class="absolute inset-0 bg-cover bg-center" 
-                 style="background-image: url('https://corbellini.com.br/hero-poster.jpg'); filter: brightness(0.4);">
+                 style="background-image: url('https://corbellini.com.br/hero-poster.jpg?v=1.1'); filter: brightness(0.5);">
             </div>
             
             <video id="heroVideoDesktop" autoplay muted loop playsinline preload="auto"
-                   poster="https://corbellini.com.br/hero-poster.jpg"
+                   poster="https://corbellini.com.br/hero-poster.jpg?v=1.1"
                    class="hidden md:block absolute inset-0 w-full h-full object-cover"
-                   style="filter: brightness(0.4);">
-                <source src="https://corbellini.com.br/hero-video-desktop.mp4" type="video/mp4">
+                   style="filter: brightness(0.5);">
+                <source src="https://corbellini.com.br/hero-video-desktop.mp4?v=1.1" type="video/mp4">
             </video>
             
             <video id="heroVideoMobile" autoplay muted loop playsinline webkit-playsinline preload="auto"
-                   poster="https://corbellini.com.br/hero-poster.jpg"
+                   poster="https://corbellini.com.br/hero-poster.jpg?v=1.1"
                    class="block md:hidden absolute inset-0 w-full h-full object-cover"
-                   style="filter: brightness(0.4);">
-                <source src="https://corbellini.com.br/hero-video-mobile.mp4" type="video/mp4">
+                   style="filter: brightness(0.5);">
+                <source src="https://corbellini.com.br/hero-video-mobile.mp4?v=1.1" type="video/mp4">
             </video>
         </div>
         
-        <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black/80 z-5 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black/90 z-5 pointer-events-none"></div>
             
-        <div class="relative z-10 text-center px-4 max-w-6xl mx-auto pt-20">
+        <div class="relative z-10 text-center px-4 max-w-6xl mx-auto pt-32">
             <h1 class="text-4xl md:text-7xl font-playfair font-black mb-8 leading-tight">
                 Don't Just Visit. <span class="gold-gradient">Belong.</span><br>
                 Don't Just Record. <span class="gold-gradient">Immortalize.</span>
             </h1>
-            
-            <p class="text-xl md:text-2xl text-gray-200 font-light mb-12 max-w-4xl mx-auto">
-                Bespoke Travel Guiding & Professional 8K Cinematography.
-            </p>
-            
-            <div class="status-pulse inline-block mb-12">
-                <p class="text-sm md:text-base">
-                    📍 <span class="text-champagne font-bold">CURRENTLY:</span> HOUSTON, TX | 
-                    ✈️ <span class="text-champagne font-bold">NEXT:</span> CANCUN (MAR), RIO (MAY).
-                </p>
+            <p class="text-xl md:text-2xl font-light mb-12">Bespoke Travel Guiding & Professional 8K Cinematography.</p>
+            <div class="status-pulse rounded-full px-8 py-4 mb-12 inline-block">
+                <p class="text-sm">📍 <span class="text-champagne font-bold">CURRENTLY:</span> HOUSTON, TX | ✈️ CANCUN (MAR), RIO (MAY)</p>
             </div>
-            
-            <div class="flex flex-col md:flex-row gap-5 justify-center items-center">
+            <div class="flex flex-col md:flex-row gap-5 justify-center">
                 <a href="#services" class="btn-champagne">Explore Horizons</a>
-                <a href="#portfolio" class="border-2 border-champagne text-champagne px-10 py-4 rounded-full font-bold hover:bg-champagne hover:text-black transition-all">View Portfolio</a>
+                <a href="#portfolio" class="border-2 border-champagne text-champagne px-10 py-4 rounded-full">View Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-28 px-6 bg-ebony">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+            <div class="card-horizon">
+                <h3 class="text-2xl font-playfair font-bold text-champagne mb-4">Artists Horizons</h3>
+                <p class="text-gray-400 mb-6">Sonic storytelling and creative portraits for musicians.</p>
+                <a href="#" class="text-champagne font-bold">View Instagram →</a>
+            </div>
+            <div class="card-horizon">
+                <h3 class="text-2xl font-playfair font-bold text-champagne mb-4">Events Horizons</h3>
+                <p class="text-gray-400 mb-6">Proposals and milestones captured with cinematic precision.</p>
+                <a href="#" class="text-champagne font-bold">View Instagram →</a>
+            </div>
+            <div class="card-horizon">
+                <h3 class="text-2xl font-playfair font-bold text-champagne mb-4">Companies Horizons</h3>
+                <p class="text-gray-400 mb-6">High-end visual assets for corporate storytelling.</p>
+                <a href="#" class="text-champagne font-bold">View Instagram →</a>
             </div>
         </div>
     </section>
@@ -160,14 +173,6 @@
             menu.classList.toggle('hidden');
             menu.classList.toggle('flex');
         }
-
-        // Auto-close menu on link click
-        document.querySelectorAll('#mobileMenu a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('mobileMenu').classList.add('hidden');
-                document.getElementById('mobileMenu').classList.remove('flex');
-            });
-        });
     </script>
 </body>
 </html>

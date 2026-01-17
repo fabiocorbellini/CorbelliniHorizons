@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Corbellini Horizons — Don’t Just Visit. Belong.</title>
-<meta name="description" content="Bespoke travel, cinematic storytelling, events, and legacy documentation across five horizons.">
+<title>Corbellini Horizons — Photography, Cinematography & Curated Travel</title>
+<meta name="description" content="Bespoke professional photography, cinematography, events and curated travel experiences across five horizons." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,98 +16,174 @@
 html{scroll-behavior:smooth}
 body{
   font-family:'Inter',sans-serif;
-  background:#0d0d0d;
+  background:#0b0b0b;
   color:#f5f5f5;
-  overflow-x:hidden
 }
 section{padding:6rem 1.5rem}
 .container{max-width:1200px;margin:auto}
 h1,h2,h3{font-family:'Playfair Display',serif}
 h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:1.5rem}
 p{color:#d1d1d1;line-height:1.8}
+
 .gold{
-  background:linear-gradient(135deg,#C5A059,#d4b06a,#C5A059);
+  background:linear-gradient(135deg,#C5A059,#e0c07a,#C5A059);
   -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent
+  -webkit-text-fill-color:transparent;
 }
+
+/* NAV */
 nav{
   position:fixed;top:0;width:100%;z-index:50;
-  background:rgba(13,13,13,.7);backdrop-filter:blur(12px)
+  background:rgba(11,11,11,.7);backdrop-filter:blur(12px)
 }
 .nav-inner{
-  max-width:1200px;margin:auto;padding:1rem 1.5rem;
+  max-width:1200px;margin:auto;
+  padding:1rem 1.5rem;
   display:flex;justify-content:space-between;align-items:center
 }
-.nav-inner a{color:#fff;text-decoration:none;margin-left:1.5rem;font-weight:500}
+.nav-inner a{
+  color:#fff;text-decoration:none;
+  margin-left:1.5rem;font-weight:500
+}
 .nav-inner a:hover{color:#C5A059}
 
 /* HERO */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center}
-.hero-media{position:absolute;inset:0;overflow:hidden}
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.hero-media{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+}
 .hero-media .poster{
-  position:absolute;inset:0;
-  background:url('https://media.corbellini.com.br/hero-poster-mobile.jpg') center/cover no-repeat;
-  filter:brightness(.5)
+  position:absolute;
+  inset:0;
+  background:url("https://media.corbellini.com.br/hero-poster-mobile.jpg") center/cover no-repeat;
+  filter:brightness(.45);
 }
 .hero-media video{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;filter:brightness(.5)
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.45);
 }
-.hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.45)}
-.hero-content{position:relative;z-index:3;max-width:900px}
-.hero h1{font-size:clamp(3rem,6vw,5rem);margin-bottom:1rem}
-.hero p{font-size:1.3rem;margin-bottom:2.5rem}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.8));
+}
+.hero-content{
+  position:relative;z-index:2;
+  max-width:900px;
+}
+.hero h1{
+  font-size:clamp(2.8rem,6vw,4.8rem);
+  margin-bottom:1.2rem;
+}
+.hero p{
+  font-size:1.25rem;
+  margin-bottom:2rem;
+}
+.status-box{
+  display:inline-block;
+  padding:1rem 1.5rem;
+  border-radius:14px;
+  border:1px solid rgba(197,160,89,.5);
+  background:rgba(197,160,89,.08);
+  margin-bottom:2.5rem;
+}
 
 /* BUTTON */
 .btn{
-  display:inline-block;padding:1rem 2.6rem;border-radius:999px;
-  font-weight:700;text-decoration:none;
-  background:linear-gradient(135deg,#C5A059,#d4b06a,#C5A059);
-  color:#0d0d0d
+  display:inline-block;
+  padding:1rem 2.6rem;
+  border-radius:999px;
+  font-weight:700;
+  background:linear-gradient(135deg,#C5A059,#e0c07a,#C5A059);
+  color:#0b0b0b;
+  text-decoration:none;
 }
 
 /* CARDS */
 .grid{display:grid;gap:2rem}
 .grid-3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .card{
-  background:#141414;border-radius:16px;padding:2rem;
-  border:1px solid rgba(197,160,89,.25)
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(197,160,89,.25);
+  border-radius:18px;
+  padding:2rem;
+  transition:.4s;
 }
-.card h3{margin-bottom:.8rem}
+.card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(197,160,89,.6);
+}
+.icon{
+  font-size:2rem;
+  margin-bottom:1rem;
+}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  gap:1rem;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+}
+.gallery div{
+  aspect-ratio:1/1;
+  background-size:cover;
+  background-position:center;
+  border-radius:14px;
+}
 
 /* ABOUT */
 .about-grid{
-  display:grid;gap:3rem;align-items:center
+  display:grid;gap:3rem;
 }
 @media(min-width:900px){
   .about-grid{grid-template-columns:1fr 1fr}
 }
-.about img{
-  width:100%;border-radius:18px;
-  border:1px solid rgba(197,160,89,.3)
+.founder-card{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(197,160,89,.25);
+  border-radius:18px;
+  padding:1.5rem;
 }
-
-/* GEAR */
-.gear-grid{display:grid;gap:1.5rem}
-@media(min-width:768px){.gear-grid{grid-template-columns:repeat(3,1fr)}}
-.gear-item{
-  padding:1.5rem;border-radius:14px;
-  background:rgba(197,160,89,.08);
-  border:1px solid rgba(197,160,89,.25)
+.founder-card img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:12px;
 }
 
 /* FORM */
 form{max-width:600px;margin-top:2rem}
-input,textarea{
-  width:100%;padding:1rem;margin-bottom:1rem;
-  background:#1a1a1a;border:1px solid #333;
-  color:#fff;border-radius:8px
+input,select,textarea{
+  width:100%;
+  padding:1rem;
+  margin-bottom:1rem;
+  background:#121212;
+  border:1px solid #333;
+  color:#fff;
+  border-radius:10px;
 }
 textarea{min-height:140px}
 input[type=submit]{border:none;cursor:pointer}
 
 /* FOOTER */
-footer{text-align:center;padding:3rem 1.5rem;color:#888}
+footer{
+  padding:3rem 1.5rem;
+  text-align:center;
+  color:#999;
+}
+footer a{color:#C5A059;text-decoration:none}
 </style>
 </head>
 
@@ -117,7 +193,7 @@ footer{text-align:center;padding:3rem 1.5rem;color:#888}
   <div class="nav-inner">
     <strong>Corbellini Horizons</strong>
     <div>
-      <a href="#about">About</a>
+      <a href="#profile">Profile</a>
       <a href="#horizons">Horizons</a>
       <a href="#gear">Gear</a>
       <a href="#booking">Booking</a>
@@ -129,17 +205,59 @@ footer{text-align:center;padding:3rem 1.5rem;color:#888}
 <section class="hero">
   <div class="hero-media">
     <div class="poster"></div>
-    <video muted loop playsinline preload="none"
+    <video autoplay muted loop playsinline preload="metadata"
       poster="https://media.corbellini.com.br/hero-poster-mobile.jpg">
-      <source src="https://media.corbellini.com.br/hero-video-mobile.mp4" type="video/mp4" media="(max-width:767px)">
-      <source src="https://media.corbellini.com.br/hero-video-desktop.mp4" type="video/mp4" media="(min-width:768px)">
+      <source src="https://media.corbellini.com.br/hero-video-mobile.mp4" media="(max-width:767px)">
+      <source src="https://media.corbellini.com.br/hero-video-desktop.mp4" media="(min-width:768px)">
     </video>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <h1>Don’t Just Visit.<br><span class="gold">Belong.</span></h1>
-    <p>Five Horizons. One Philosophy.</p>
-    <a href="#horizons" class="btn">Explore Horizons</a>
+    <h1>
+      Don’t Just Visit. <span class="gold">Belong.</span><br>
+      Don’t Just Record. <span class="gold">Immortalize.</span>
+    </h1>
+    <p>Bespoke Professional Photography, Cinematography & Curated Travel Experiences</p>
+    <div class="status-box">
+      Currently in: <strong>Houston, TX</strong><br>
+      Next Horizons: Cancun (March) · Rio de Janeiro (May)
+    </div><br>
+    <a href="#booking" class="btn">Book Your Next Horizon</a>
+  </div>
+</section>
+
+<!-- HORIZONS -->
+<section id="horizons">
+  <div class="container">
+    <h2>Five Horizons</h2>
+    <div class="grid grid-3">
+      <div class="card"><div class="icon">📍</div><h3>Curated Travel</h3><p>Guided, immersive travel experiences.</p></div>
+      <div class="card"><div class="icon">🎥</div><h3>Cinematography</h3><p>High-end visual storytelling.</p></div>
+      <div class="card"><div class="icon">📸</div><h3>Photography</h3><p>Professional portrait & lifestyle work.</p></div>
+      <div class="card"><div class="icon">🎉</div><h3>Events Horizons</h3><p>Milestones, anniversaries & celebrations.</p></div>
+      <div class="card"><div class="icon">🕯️</div><h3>Legacy & Archive</h3><p>Preserving stories beyond generations.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE / GALLERIES -->
+<section id="profile">
+  <div class="container">
+    <h2>Profile</h2>
+
+    <h3>Curated Travel</h3>
+    <div class="gallery">
+      <div style="background-image:url('https://media.corbellini.com.br/sample1.jpg')"></div>
+      <div style="background-image:url('https://media.corbellini.com.br/sample2.jpg')"></div>
+      <div style="background-image:url('https://media.corbellini.com.br/sample3.jpg')"></div>
+    </div>
+
+    <h3 style="margin-top:3rem">Cinematography</h3>
+    <div class="gallery">
+      <div style="background-image:url('https://media.corbellini.com.br/sample4.jpg')"></div>
+      <div style="background-image:url('https://media.corbellini.com.br/sample5.jpg')"></div>
+      <div style="background-image:url('https://media.corbellini.com.br/sample6.jpg')"></div>
+    </div>
   </div>
 </section>
 
@@ -149,26 +267,13 @@ footer{text-align:center;padding:3rem 1.5rem;color:#888}
     <div>
       <h2>About the Founder</h2>
       <p>
-        Corbellini Horizons was founded to merge curated travel,
-        cinematic storytelling, and legacy documentation into a
-        single intentional experience. Every horizon is designed
-        with precision, emotion, and permanence.
+        Corbellini Horizons blends professional photography, cinematic storytelling
+        and intentional travel into one seamless experience. Every project is
+        designed to be lived — and remembered.
       </p>
     </div>
-    <img src="https://media.corbellini.com.br/founder.jpg" alt="Founder portrait">
-  </div>
-</section>
-
-<!-- HORIZONS -->
-<section id="horizons">
-  <div class="container">
-    <h2>Five Horizons</h2>
-    <div class="grid grid-3">
-      <div class="card"><h3>Curated Travel</h3><p>Immersive, bespoke journeys beyond tourism.</p></div>
-      <div class="card"><h3>Cinematic</h3><p>High-end storytelling captured with intention.</p></div>
-      <div class="card"><h3>Brand & Lifestyle</h3><p>Visual narratives for brands and destinations.</p></div>
-      <div class="card"><h3>Events Horizons</h3><p>Luxury events, anniversaries, and milestone documentation.</p></div>
-      <div class="card"><h3>Legacy & Archive</h3><p>Preserving moments meant to outlive generations.</p></div>
+    <div class="founder-card">
+      <img src="https://media.corbellini.com.br/founder.jpg" alt="Founder">
     </div>
   </div>
 </section>
@@ -177,10 +282,10 @@ footer{text-align:center;padding:3rem 1.5rem;color:#888}
 <section id="gear">
   <div class="container">
     <h2>Gear Setup</h2>
-    <div class="gear-grid">
-      <div class="gear-item">Cinema Cameras & 8K Capture</div>
-      <div class="gear-item">Professional Audio & Field Recording</div>
-      <div class="gear-item">Stabilization, Drones & Motion Systems</div>
+    <div class="grid grid-3">
+      <div class="card"><div class="icon">🎬</div>Cinema-grade cameras & 8K capture</div>
+      <div class="card"><div class="icon">🎧</div>Professional audio & field recording</div>
+      <div class="card"><div class="icon">🚁</div>Drones, stabilization & motion systems</div>
     </div>
   </div>
 </section>
@@ -192,14 +297,24 @@ footer{text-align:center;padding:3rem 1.5rem;color:#888}
     <form>
       <input type="text" placeholder="Name" required>
       <input type="email" placeholder="Email" required>
-      <textarea placeholder="Tell us about your vision"></textarea>
+      <select required>
+        <option value="">Select Horizon</option>
+        <option>Curated Travel</option>
+        <option>Cinematography</option>
+        <option>Photography</option>
+        <option>Events Horizons</option>
+        <option>Legacy & Archive</option>
+        <option>Other</option>
+      </select>
+      <input type="date" required>
+      <textarea placeholder="Tell us about your project or journey"></textarea>
       <input type="submit" value="Request Booking" class="btn">
     </form>
   </div>
 </section>
 
 <footer>
-  © 2026 Corbellini Horizons. All rights reserved.
+  © 2026 All rights reserved · <a href="mailto:corbellini@gmail.com">Corbellini</a>
 </footer>
 
 </body>

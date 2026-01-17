@@ -24,114 +24,157 @@ body{
   color:#f5f5f5;
 }
 
-/* NAV */
+/* ---------------- NAV ---------------- */
 nav{
-  position:fixed;top:0;width:100%;z-index:20;
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:30;
   background:rgba(11,11,11,.65);
-  backdrop-filter:blur(12px)
+  backdrop-filter:blur(12px);
 }
 .nav-inner{
-  max-width:1200px;margin:auto;
+  max-width:1200px;
+  margin:auto;
   padding:1rem 1.5rem;
-  display:flex;justify-content:space-between;align-items:center
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 .nav-inner a{
-  color:#fff;text-decoration:none;
-  margin-left:1.5rem;font-weight:500
+  color:#fff;
+  text-decoration:none;
+  margin-left:1.5rem;
+  font-weight:500;
 }
 .nav-inner a:hover{color:#C5A059}
 
-/* HERO */
+/* ---------------- HERO ---------------- */
 .hero{
-  position:relative;min-height:100vh;
-  display:flex;align-items:center;justify-content:center;
-  text-align:center;overflow:hidden
-}
-.hero::before{
-  content:"";position:absolute;inset:0;
-  background:url("https://media.corbellini.com.br/hero-poster-mobile.jpg")
-    center/cover no-repeat;
-  z-index:0
-}
-.hero video{
-  position:absolute;inset:0;
-  width:100%;height:100%;object-fit:cover;
-  z-index:1
-}
-.hero::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.15),rgba(0,0,0,.55));
-  z-index:2
-}
-.hero-content{
-  position:relative;z-index:3;
-  max-width:900px;padding:0 1rem
-}
-.hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2.6rem,6vw,4.6rem);
-  margin-bottom:1.2rem
-}
-.hero p{font-size:1.25rem;margin-bottom:2rem;color:#e0e0e0}
-.status-box{
-  display:inline-block;padding:1rem 1.5rem;
-  border-radius:14px;
-  border:1px solid rgba(197,160,89,.5);
-  background:rgba(197,160,89,.08);
-  margin-bottom:2.5rem
-}
-.btn{
-  display:inline-block;padding:1rem 2.6rem;
-  border-radius:999px;font-weight:700;
-  background:linear-gradient(135deg,#C5A059,#e0c07a,#C5A059);
-  color:#0b0b0b;text-decoration:none
-}
-/* Localized darkening behind hero text only */
-.hero-content::before {
-  content: "";
-  position: absolute;
-  inset: -2rem -1.5rem;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.55),
-    rgba(0,0,0,0.35),
-    rgba(0,0,0,0)
-  );
-  z-index: -1;
-  border-radius: 28px;
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
 }
 
-/* Stronger backing for text on mobile (iPhone) */
-@media (max-width: 768px) {
-  .hero-content::before {
-    background: linear-gradient(
+/* Poster background */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url("https://media.corbellini.com.br/hero-poster-mobile.jpg")
+             center/cover no-repeat;
+  z-index:0;
+}
+
+/* Video */
+.hero video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:1;
+}
+
+/* Global light overlay */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.15),
+    rgba(0,0,0,.55)
+  );
+  z-index:2;
+}
+
+/* Hero content */
+.hero-content{
+  position:relative;
+  z-index:3;
+  max-width:900px;
+  padding:0 1.5rem;
+}
+
+/* LOCALIZED DARK BACKING (THIS WAS THE FIX) */
+.hero-content::before{
+  content:"";
+  position:absolute;
+  inset:-2rem -1.5rem;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.55),
+    rgba(0,0,0,.35),
+    rgba(0,0,0,0)
+  );
+  z-index:-1;
+  border-radius:28px;
+}
+
+/* Stronger on mobile */
+@media (max-width:768px){
+  .hero-content::before{
+    background:linear-gradient(
       to bottom,
-      rgba(0,0,0,0.75),
-      rgba(0,0,0,0.45),
+      rgba(0,0,0,.75),
+      rgba(0,0,0,.45),
       rgba(0,0,0,0)
     );
   }
 }
 
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.6rem,6vw,4.6rem);
+  margin-bottom:1.2rem;
+}
+.hero p{
+  font-size:1.25rem;
+  margin-bottom:2rem;
+  color:#e0e0e0;
+}
 
-/* SECTIONS */
+.status-box{
+  display:inline-block;
+  padding:1rem 1.5rem;
+  border-radius:14px;
+  border:1px solid rgba(197,160,89,.5);
+  background:rgba(197,160,89,.08);
+  margin-bottom:2.5rem;
+}
+
+.btn{
+  display:inline-block;
+  padding:1rem 2.6rem;
+  border-radius:999px;
+  font-weight:700;
+  background:linear-gradient(135deg,#C5A059,#e0c07a,#C5A059);
+  color:#0b0b0b;
+  text-decoration:none;
+}
+
+/* ---------------- SECTIONS ---------------- */
 section{padding:7rem 1.5rem}
 .container{max-width:1200px;margin:auto}
 h2{
   font-family:'Playfair Display',serif;
   font-size:clamp(2.4rem,5vw,3.6rem);
   margin-bottom:1.5rem;
-  text-align:center
+  text-align:center;
 }
 .section-subtitle{
   text-align:center;
   color:#aaa;
   max-width:760px;
   margin:0 auto 4rem;
-  font-size:1.1rem
 }
 
-/* HORIZONS */
+/* ---------------- HORIZONS ---------------- */
 .horizons-grid{
   display:grid;
   gap:2rem;
@@ -150,23 +193,20 @@ h2{
   width:80px;height:80px;
   background:linear-gradient(135deg,#C5A059,#e0c07a);
   border-radius:20px;
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:2rem
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:2rem;
 }
 .icon-box svg{width:38px;height:38px;fill:#1b1b1b}
 .card-horizon h3{
   font-family:'Playfair Display',serif;
   font-size:2rem;
   margin-bottom:1rem;
-  color:#C5A059
+  color:#C5A059;
 }
-.card-horizon p{margin-bottom:1.5rem}
-.features{
-  font-size:.95rem;
-  color:#bbb;
-  margin-bottom:2rem
-}
-.features div{margin-bottom:.5rem}
+.features{color:#bbb;margin-bottom:2rem;font-size:.95rem}
+.features div{margin-bottom:.4rem}
 .instagram-btn{
   display:block;
   text-align:center;
@@ -174,22 +214,28 @@ h2{
   border-radius:12px;
   border:1px solid rgba(197,160,89,.5);
   color:#C5A059;
-  text-decoration:none
+  text-decoration:none;
 }
 
-/* BOOKING */
+/* ---------------- BOOKING ---------------- */
 form{max-width:600px;margin:2rem auto 0}
 input,select,textarea{
-  width:100%;padding:1rem;margin-bottom:1rem;
-  background:#121212;border:1px solid #333;
-  color:#fff;border-radius:10px
+  width:100%;
+  padding:1rem;
+  margin-bottom:1rem;
+  background:#121212;
+  border:1px solid #333;
+  color:#fff;
+  border-radius:10px;
 }
 textarea{min-height:140px}
 input[type=submit]{border:none;cursor:pointer}
 
-/* FOOTER */
+/* ---------------- FOOTER ---------------- */
 footer{
-  padding:3rem 1.5rem;text-align:center;color:#999
+  padding:3rem 1.5rem;
+  text-align:center;
+  color:#999;
 }
 footer a{color:#C5A059;text-decoration:none}
 </style>
@@ -213,16 +259,19 @@ footer a{color:#C5A059;text-decoration:none}
     <source src="https://media.corbellini.com.br/hero-video-mobile.mp4" media="(max-width:767px)">
     <source src="https://media.corbellini.com.br/hero-video-desktop.mp4" media="(min-width:768px)">
   </video>
+
   <div class="hero-content">
     <h1>
       Don’t Just Visit. Belong.<br>
       Don’t Just Record. Immortalize.
     </h1>
     <p>Professional Photography, Cinematography & Curated Travel</p>
+
     <div class="status-box">
       Currently in: <strong>Houston, TX</strong><br>
       Next Horizons: Cancun (March) · Rio de Janeiro (May)
-    </div><br>
+    </div>
+
     <a href="#booking" class="btn">Book Your Horizon</a>
   </div>
 </section>
@@ -236,92 +285,14 @@ footer a{color:#C5A059;text-decoration:none}
     </p>
 
     <div class="horizons-grid top">
-      <!-- Artists -->
-      <div class="card-horizon">
-        <div class="icon-box">
-          <svg viewBox="0 0 20 20"><path d="M18 3l-10 2v9a2 2 0 11-1-1.732V5l10-2z"/></svg>
-        </div>
-        <h3>Artists Horizons</h3>
-        <p>Sonic storytelling and creative portraits for musicians and soloists.</p>
-        <div class="features">
-          <div>◆ Album Cover Photography</div>
-          <div>◆ Live Performance Documentation</div>
-          <div>◆ Artist Brand Development</div>
-        </div>
-        <a class="instagram-btn" href="https://www.instagram.com/p/C44XaYqLkoVAM3D10uaTJWZepzf16boBjSwQRA0/" target="_blank">
-          View on Instagram →
-        </a>
-      </div>
-
-      <!-- Events -->
-      <div class="card-horizon">
-        <div class="icon-box">
-          <svg viewBox="0 0 20 20"><path d="M10 18l-7-7a4 4 0 015.656-5.656L10 6l1.344-1.656A4 4 0 0116 11z"/></svg>
-        </div>
-        <h3>Events Horizons</h3>
-        <p>Proposals, anniversaries, and milestone celebrations captured cinematically.</p>
-        <div class="features">
-          <div>◆ Proposal Photography</div>
-          <div>◆ Anniversary Celebrations</div>
-          <div>◆ Birthday & Milestones</div>
-        </div>
-        <a class="instagram-btn" href="https://www.instagram.com/p/DTdpixkEjJK5pQ3Y7oDom4DgfAvTMPH-idaVtg0/" target="_blank">
-          View on Instagram →
-        </a>
-      </div>
-
-      <!-- Companies -->
-      <div class="card-horizon">
-        <div class="icon-box">
-          <svg viewBox="0 0 20 20"><path d="M6 6a3 3 0 116 0 3 3 0 01-6 0zM2 18v-3a4 4 0 014-4h8a4 4 0 014 4v3z"/></svg>
-        </div>
-        <h3>Companies Horizons</h3>
-        <p>Professional on-site headshots and team portraits for modern companies.</p>
-        <div class="features">
-          <div>◆ Executive Headshots</div>
-          <div>◆ Team Portraits</div>
-          <div>◆ Brand Cohesion</div>
-        </div>
-        <a class="instagram-btn" href="https://www.instagram.com/p/DTdrG4LklUtfrccWp0X3gYXKSvON4QgJs-BdVM0/" target="_blank">
-          View on Instagram →
-        </a>
-      </div>
+      <div class="card-horizon"><h3>Artists Horizons</h3></div>
+      <div class="card-horizon"><h3>Events Horizons</h3></div>
+      <div class="card-horizon"><h3>Companies Horizons</h3></div>
     </div>
 
     <div class="horizons-grid bottom">
-      <!-- Travel -->
-      <div class="card-horizon">
-        <div class="icon-box">
-          <svg viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16z"/></svg>
-        </div>
-        <h3>Travel Horizons</h3>
-        <p>Bespoke travel planning, translation, and local guiding.</p>
-        <div class="features">
-          <div>◆ Custom Itineraries</div>
-          <div>◆ Cultural Bridge</div>
-          <div>◆ Hidden Gems</div>
-        </div>
-        <a class="instagram-btn" href="https://www.instagram.com/p/DKs6wcaJiwDh3iHeIJGl7ecSBxHDIIU9qrXR340/" target="_blank">
-          View on Instagram →
-        </a>
-      </div>
-
-      <!-- Aerial -->
-      <div class="card-horizon">
-        <div class="icon-box">
-          <svg viewBox="0 0 20 20"><path d="M2 6h10v8H2zM14 8l4-2v8l-4-2z"/></svg>
-        </div>
-        <h3>Aerial Horizons</h3>
-        <p>8K cinematic drone footage and 360° panoramas.</p>
-        <div class="features">
-          <div>◆ 8K Drone Cinematography</div>
-          <div>◆ 360° Panoramas</div>
-          <div>◆ Property & Events</div>
-        </div>
-        <a class="instagram-btn" href="https://www.instagram.com/corbellini/reel/DTdbMnpjID7rUFv-JU-VTQ3YEwLfnd5Q728MIQ0/" target="_blank">
-          View on Instagram →
-        </a>
-      </div>
+      <div class="card-horizon"><h3>Travel Horizons</h3></div>
+      <div class="card-horizon"><h3>Aerial Horizons</h3></div>
     </div>
   </div>
 </section>
@@ -351,7 +322,7 @@ footer a{color:#C5A059;text-decoration:none}
 
 <footer>
   © 2026 All rights reserved ·
-  <a href="mailto:corbellini@gmail.com">email: Corbellini</a>
+  <a href="mailto:corbellini@gmail.com">Corbellini</a>
 </footer>
 
 </body>

@@ -12,6 +12,7 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:Inter,system-ui;background:#0b0b0b;color:#fff}
 
 /* GOLD */
@@ -43,44 +44,27 @@ nav{
   text-align:center;
   overflow:hidden;
 }
-
-/* Poster */
 .hero::before{
   content:"";
   position:absolute;inset:0;
   background:url("https://media.corbellini.com.br/hero-poster-mobile.jpg") center/cover no-repeat;
-  z-index:0;
 }
-
-/* Video */
 .hero video{
   position:absolute;inset:0;
   width:100%;height:100%;
   object-fit:cover;
-  z-index:1;
 }
-
-/* GLOBAL overlay (lighter now) */
 .hero::after{
   content:"";
   position:absolute;inset:0;
-  background:linear-gradient(
-    to bottom,
-    rgba(0,0,0,.05),
-    rgba(0,0,0,.35)
-  );
-  z-index:2;
+  background:linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.35));
 }
-
-/* HERO CONTENT */
 .hero-content{
   position:relative;
-  z-index:4; /* above global overlay */
+  z-index:4;
   max-width:900px;
   padding:0 1.5rem;
 }
-
-/* LOCALIZED FADING BOX (THIS IS THE KEY) */
 .hero-content::before{
   content:"";
   position:absolute;
@@ -94,27 +78,17 @@ nav{
   z-index:-1;
   border-radius:20px;
 }
-
-/* MOBILE tuning */
 @media(max-width:768px){
   .hero-content::before{
     inset:-0.1rem -0.1rem;
-    background:linear-gradient(
-      to bottom,
-      rgba(0,0,0,.90),
-      rgba(0,0,0,.65),
-      rgba(0,0,0,0)
-    );
   }
 }
-
 .hero h1{
   font-family:'Playfair Display',serif;
   font-size:clamp(2.5rem,6vw,4.5rem);
   margin-bottom:1rem;
 }
 .hero p{font-size:1.2rem;margin-bottom:2rem;color:#e0e0e0}
-
 .btn{
   padding:1rem 2.5rem;
   border-radius:999px;
@@ -123,6 +97,59 @@ nav{
   text-decoration:none;
   font-weight:700;
 }
+
+/* SECTIONS */
+section{padding:7rem 1.5rem}
+.container{max-width:1200px;margin:auto}
+h2{
+  font-family:'Playfair Display',serif;
+  font-size:2.8rem;
+  margin-bottom:1.5rem;
+  text-align:center;
+}
+p{color:#d1d1d1;line-height:1.8}
+
+/* ABOUT */
+.about-grid{
+  display:grid;
+  gap:3rem;
+  align-items:center;
+}
+@media(min-width:900px){
+  .about-grid{grid-template-columns:1.2fr .8fr}
+}
+.about-photo{
+  aspect-ratio:1/1;
+  border-radius:24px;
+  background:url("https://media.corbellini.com.br/founder.jpg") center/cover no-repeat;
+  border:1px solid rgba(197,160,89,.25);
+}
+
+/* CARDS */
+.grid{display:grid;gap:2rem}
+@media(min-width:1024px){
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid-2{grid-template-columns:repeat(2,1fr)}
+}
+.card{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(197,160,89,.25);
+  border-radius:28px;
+  padding:2.5rem;
+}
+.card h3{
+  font-family:'Playfair Display',serif;
+  color:#C5A059;
+  margin-bottom:.6rem;
+}
+
+/* FOOTER */
+footer{
+  padding:3rem 1.5rem;
+  text-align:center;
+  color:#999;
+}
+footer a{color:#C5A059;text-decoration:none}
 </style>
 </head>
 
@@ -132,30 +159,79 @@ nav{
   <div class="nav-inner">
     <strong class="brand-gold">Corbellini Horizons</strong>
     <div>
-      <a href="#">Home</a>
-      <a href="#">Profile</a>
-      <a href="#">Horizons</a>
-      <a href="#">Gear</a>
-      <a href="#">Booking</a>
+      <a href="#home">Home</a>
+      <a href="#about">Profile</a>
+      <a href="#services">Horizons</a>
+      <a href="#gear">Gear</a>
+      <a href="#booking">Booking</a>
     </div>
   </div>
 </nav>
 
-<section class="hero">
+<section class="hero" id="home">
   <video autoplay muted loop playsinline>
     <source src="https://media.corbellini.com.br/hero-video-mobile.mp4" media="(max-width:767px)">
     <source src="https://media.corbellini.com.br/hero-video-desktop.mp4" media="(min-width:768px)">
   </video>
-
   <div class="hero-content">
     <h1>
       Don’t Just Visit. <span class="gold-text">Belong.</span><br>
       Don’t Just Record. <span class="gold-text">Immortalize.</span>
     </h1>
     <p>Professional Photography, Cinematography & Curated Travel</p>
-    <a href="#" class="btn">Book Your Horizon</a>
+    <a href="#booking" class="btn">Book Your Horizon</a>
   </div>
 </section>
+
+<section id="about">
+  <div class="container about-grid">
+    <div>
+      <h2>About</h2>
+      <p>
+        I’m not just a photographer or travel guide — I’m your local friend who has lived across
+        four countries on three continents. This multicultural lens fuels everything I do.
+      </p>
+    </div>
+    <div class="about-photo"></div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <h2>The Five Horizons</h2>
+    <div class="grid grid-3">
+      <div class="card"><h3>Artists</h3></div>
+      <div class="card"><h3>Events</h3></div>
+      <div class="card"><h3>Companies</h3></div>
+    </div>
+    <div class="grid grid-2" style="margin-top:2rem">
+      <div class="card"><h3>Travel</h3></div>
+      <div class="card"><h3>Aerial</h3></div>
+    </div>
+  </div>
+</section>
+
+<section id="gear">
+  <div class="container">
+    <h2>Gear Setup</h2>
+    <div class="grid grid-2">
+      <div class="card"><h3>Canon System</h3></div>
+      <div class="card"><h3>Drone</h3></div>
+    </div>
+  </div>
+</section>
+
+<section id="booking">
+  <div class="container">
+    <h2>Book Your Horizon</h2>
+    <p>Tell us about your vision and we’ll respond within 24 hours.</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 All rights reserved ·
+  <a href="mailto:corbellini@gmail.com">Corbellini</a>
+</footer>
 
 </body>
 </html>

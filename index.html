@@ -118,13 +118,13 @@ nav{
 
 @media (max-width:768px){
   .hero-content::before{
-    inset: -0.2rem -0.5rem; /* much slimmer padding */
-    max-height: 5vh;         /* prevents tall box */
+    inset: -0.2rem -0.5rem;   /* slim padding */
+    max-height: 35vh;         /* controlled, not full-screen */
     background: linear-gradient(
       to bottom,
-      rgba(0,0,0,0.80),
-      rgba(0,0,0,0.50),
-      rgba(0,0,0,10)
+      rgba(0,0,0,0.85),       /* darker at top */
+      rgba(0,0,0,0.55),
+      rgba(0,0,0,0)           /* fades out cleanly */
     );
     border-radius: 18px;
   }

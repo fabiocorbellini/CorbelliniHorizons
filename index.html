@@ -20,12 +20,12 @@ body{
   color:#f5f5f5;
 }
 
-/* NAV */
+/* ---------------- NAV ---------------- */
 nav{
   position:fixed;
   top:0;
   width:100%;
-  z-index:10;
+  z-index:20;
   background:rgba(11,11,11,.65);
   backdrop-filter:blur(12px);
 }
@@ -45,7 +45,7 @@ nav{
 }
 .nav-inner a:hover{color:#C5A059}
 
-/* HERO */
+/* ---------------- HERO ---------------- */
 .hero{
   position:relative;
   min-height:100vh;
@@ -56,7 +56,7 @@ nav{
   overflow:hidden;
 }
 
-/* Poster is ALWAYS visible */
+/* Poster always visible */
 .hero::before{
   content:"";
   position:absolute;
@@ -66,7 +66,7 @@ nav{
   z-index:0;
 }
 
-/* Video sits above poster */
+/* Video enhancement */
 .hero video{
   position:absolute;
   inset:0;
@@ -76,7 +76,12 @@ nav{
   z-index:1;
 }
 
-/* Light cinematic overlay */
+/* Hide video in Low Power / Reduced Motion */
+@media (prefers-reduced-motion: reduce){
+  .hero video{display:none}
+}
+
+/* Lighter overlay */
 .hero::after{
   content:"";
   position:absolute;
@@ -126,6 +131,17 @@ nav{
   text-decoration:none;
 }
 
+/* ---------------- SECTIONS ---------------- */
+section{padding:6rem 1.5rem}
+.container{max-width:1200px;margin:auto}
+h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4vw,3rem);
+  margin-bottom:1.5rem;
+}
+p{color:#d1d1d1;line-height:1.8}
+
+/* ---------------- FOOTER ---------------- */
 footer{
   padding:3rem 1.5rem;
   text-align:center;
@@ -141,14 +157,18 @@ footer a{color:#C5A059;text-decoration:none}
   <div class="nav-inner">
     <strong>Corbellini Horizons</strong>
     <div>
+      <a href="#profile">Profile</a>
+      <a href="#horizons">Horizons</a>
+      <a href="#gear">Gear</a>
       <a href="#booking">Booking</a>
     </div>
   </div>
 </nav>
 
-<section class="hero">
+<!-- HERO -->
+<section class="hero" id="home">
 
-  <!-- OPTIONAL VIDEO (Safari decides) -->
+  <!-- Video only when allowed -->
   <video autoplay muted loop playsinline preload="metadata">
     <source src="https://media.corbellini.com.br/hero-video-mobile.mp4" media="(max-width:767px)">
     <source src="https://media.corbellini.com.br/hero-video-desktop.mp4" media="(min-width:768px)">
@@ -173,6 +193,12 @@ footer a{color:#C5A059;text-decoration:none}
     <a href="#booking" class="btn">Book Your Next Horizon</a>
   </div>
 </section>
+
+<!-- PLACEHOLDER SECTIONS -->
+<section id="profile"><div class="container"><h2>Profile</h2></div></section>
+<section id="horizons"><div class="container"><h2>Horizons</h2></div></section>
+<section id="gear"><div class="container"><h2>Gear Setup</h2></div></section>
+<section id="booking"><div class="container"><h2>Booking</h2></div></section>
 
 <footer>
   © 2026 All rights reserved ·

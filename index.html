@@ -118,15 +118,15 @@ nav{
 
 @media (max-width:768px){
   .hero-content::before{
-    inset: -0.5rem -1rem;   /* tighter box */
-    max-height: 55vh;       /* prevents full-screen feel */
+    inset: -0.25rem -0.75rem; /* much slimmer padding */
+    max-height: 40vh;         /* prevents tall box */
     background: linear-gradient(
-      to bottom,            /* SAME direction as Mac */
-      rgba(0,0,0,0.65),
-      rgba(0,0,0,0.35),
+      to bottom,
+      rgba(0,0,0,0.60),
+      rgba(0,0,0,0.30),
       rgba(0,0,0,0)
     );
-    border-radius: 20px;
+    border-radius: 18px;
   }
 }
 

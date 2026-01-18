@@ -556,19 +556,19 @@ footer a{color:#C5A059;text-decoration:none}
   <div class="container">
     <h2>Book Your Horizon</h2>
     <p class="section-subtitle">Tell us about your vision. We'll craft an experience that transcends expectations.</p>
-    <form>
-      <input placeholder="Name">
-      <input placeholder="Email">
-      <select>
-        <option>Select Horizon</option>
-        <option>Artists Horizons</option>
-        <option>Events Horizons</option>
-        <option>Company Horizons</option>
-        <option>Travel Horizons</option>
-        <option>Aerial Horizons</option>
+    <form method="POST" action="/api/book">
+      <input placeholder="Name" placeholder="Name" required>
+      <input placeholder="Email" type="email" placeholder="Email" required>
+      <select name="horizon" required>
+        <option value="">Select Horizon</option>
+        <option value="Artists Horizons">Artists Horizons</option>
+        <option value="Events Horizons">Events Horizons</option>
+        <option value="Company Horizons">Company Horizons</option>
+        <option value="Travel Horizons">Travel Horizons</option>
+        <option value="Aerial Horizons">Aerial Horizons</option>
       </select>
-      <input type="date">
-      <textarea placeholder="Tell us about your project"></textarea>
+      <input type="date" name="date" required>
+      <textarea name="message" placeholder="Tell us about your project" required></textarea>
       <input type="submit" value="Request Booking" class="btn">
     </form>
   </div>

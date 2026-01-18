@@ -72,6 +72,11 @@ section{
   position:absolute;inset:0;
   width:100%;height:100%;object-fit:cover;
 }
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .hero::after{
   content:"";position:absolute;inset:0;
   background:linear-gradient(to bottom,rgba(0,0,0,.15),rgba(0,0,0,.5));
@@ -343,8 +348,25 @@ footer a{color:#C5A059;text-decoration:none}
 
 <!-- HOME -->
 <section class="hero" id="home">
-  <video autoplay muted loop playsinline>
-    <source src="https://media.corbellini.com.br/hero-video-desktop.mp4" type="video/mp4">
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    class="hero-video">
+
+  <!-- Mobile video FIRST -->
+    <source
+      src="/videos/hero-mobile.mp4"
+      type="video/mp4"
+      media="(max-width: 768px)">
+
+  <!-- Desktop video -->
+    <source
+      src="/videos/hero-desktop.mp4"
+      type="video/mp4"
+      media="(min-width: 769px)">
   </video>
   <div class="hero-content">
     <h1>Don’t Just Visit. <span class="gold-text">Belong.</span><br>Don’t Just Record. <span class="gold-text">Immortalize.</span></h1>

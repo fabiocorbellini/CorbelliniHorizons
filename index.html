@@ -637,36 +637,53 @@ footer a{color:#C5A059;text-decoration:none}
 
 <!-- Form Script -->
 <script>
+let turnstileToken = null;
+
+function onTurnstileSuccess(token) {
+  turnstileToken = token;
+}
+
 const form = document.getElementById("booking-form");
 const status = document.getElementById("form-status");
-const formData = new FormData(form);
-formData.append("cf-turnstile-response", turnstileToken);
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+
+  if (!turnstileToken) {
+    status.textContent = "Security check in progress. Please try again.";
+    status.className = "form-status show error";
+    return;
+  }
 
   status.textContent = "Sending request…";
   status.className = "form-status show";
 
   try {
+    const formData = new FormData(form);
+    formData.append("cf-turnstile-response", turnstileToken);
+
     const response = await fetch("/api/book", {
       method: "POST",
-      body: new FormData(form)
+      body: formData
     });
 
     if (response.ok) {
       status.textContent = "Thank you! We’ll respond within 24 hours.";
       status.classList.add("success");
       form.reset();
+      turnstileToken = null;
     } else {
       throw new Error("Submission failed");
     }
+
   } catch (err) {
     status.textContent = "Something went wrong. Please try again.";
     status.classList.add("error");
   }
 });
 </script>
+
+<!-- Cloudflare Turnstile -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <!-- Cloudflare Web Analytics -->

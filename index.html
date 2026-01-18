@@ -632,49 +632,54 @@ footer a{color:#C5A059;text-decoration:none}
 
 <!-- Form Script -->
 <script>
-let turnstileToken = null;
+document.addEventListener("DOMContentLoaded", () => {
+  let turnstileToken = null;
 
-function onTurnstileSuccess(token) {
-  turnstileToken = token;
-}
+  window.onTurnstileSuccess = function (token) {
+    turnstileToken = token;
+  };
 
-const form = document.getElementById("booking-form");
-const status = document.getElementById("form-status");
+  const form = document.getElementById("booking-form");
+  const status = document.getElementById("form-status");
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  if (!turnstileToken) {
-    status.textContent = "Security check in progress. Please try again.";
-    status.className = "form-status show error";
+  if (!form) {
+    console.error("Booking form not found");
     return;
   }
 
-  status.textContent = "Sending request…";
-  status.className = "form-status show";
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  try {
-    const formData = new FormData(form);
-    formData.append("cf-turnstile-response", turnstileToken);
-
-    const response = await fetch("/api/book", {
-      method: "POST",
-      body: formData
-    });
-
-    if (response.ok) {
-      status.textContent = "Thank you! We’ll respond within 24 hours.";
-      status.classList.add("success");
-      form.reset();
-      turnstileToken = null;
-    } else {
-      throw new Error("Submission failed");
+    if (!turnstileToken) {
+      status.textContent = "Security check in progress. Please try again.";
+      status.className = "form-status show error";
+      return;
     }
 
-  } catch (err) {
-    status.textContent = "Something went wrong. Please try again.";
-    status.classList.add("error");
-  }
+    status.textContent = "Sending request…";
+    status.className = "form-status show";
+
+    try {
+      const formData = new FormData(form);
+      formData.append("cf-turnstile-response", turnstileToken);
+
+      const response = await fetch("/api/book", {
+        method: "POST",
+        body: formData
+      });
+
+      if (!response.ok) throw new Error();
+
+      status.textContent = "Thank you! We’ll respond within 24 hours.";
+      status.className = "form-status show success";
+      form.reset();
+      turnstileToken = null;
+
+    } catch (err) {
+      status.textContent = "Something went wrong. Please try again.";
+      status.className = "form-status show error";
+    }
+  });
 });
 </script>
 

@@ -113,6 +113,14 @@ section{
   background:linear-gradient(135deg,#C5A059,#e0c07a,#C5A059);
   color:#0b0b0b;text-decoration:none;
 }
+@media (max-width: 768px) {
+  .hero-video-desktop {
+    display: none;
+  }
+  .hero-video-mobile {
+    display: block;
+  }
+}
 
 /* SECTIONS */
 section{padding:7rem 1.5rem}
@@ -135,9 +143,6 @@ h2{
   .profile-grid{grid-template-columns:1.2fr .8fr}
 }
 @media (max-width: 768px) {
-  .profile-video video {
-    display: none;
-  }
 .profile-video {
     background-image: url("https://media.corbellini.com.br/profile-photo.jpg");
     background-size: cover;
@@ -344,7 +349,7 @@ footer a{color:#C5A059;text-decoration:none}
 <!-- HOME -->
 <!-- HERO -->
 <section class="hero" id="home">
-  <!-- MOBILE VIDEO -->
+ <!-- MOBILE VIDEO -->
   <video
     class="hero-video hero-video-mobile"
     autoplay
@@ -352,7 +357,7 @@ footer a{color:#C5A059;text-decoration:none}
     loop
     playsinline
     preload="auto">
-    <source src="https://media.cobrlellini.com.br/hero-mobile.mp4" type="video/mp4">
+    <source src="https://media.corbellini.com.br/hero-video-mobile.mp4" type="video/mp4">
   </video>
 
   <!-- DESKTOP VIDEO -->
@@ -363,8 +368,9 @@ footer a{color:#C5A059;text-decoration:none}
     loop
     playsinline
     preload="auto">
-    <source src="https://media.cobrlellini.com.br/hero-desktop.mp4" type="video/mp4">
+    <source src="https://media.corbellini.com.br/hero-video-desktop.mp4" type="video/mp4">
   </video>
+
   <div class="hero-content">
     <h1>Don’t Just Visit. <span class="gold-text">Belong.</span><br>Don’t Just Record. <span class="gold-text">Immortalize.</span></h1>
     <p>Professional Photography, Cinematography & Curated Travel</p>

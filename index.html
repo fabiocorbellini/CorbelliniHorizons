@@ -600,7 +600,8 @@ footer a{color:#C5A059;text-decoration:none}
   <div class="container">
     <h2>Book Your Horizon</h2>
     <p class="section-subtitle">Tell us about your vision. We'll craft an experience that transcends expectations.</p>
-    <form id="booking-form" novalidate>
+    <form method="POST" action="/api/book" id="booking-form">
+
       <input name="name" placeholder="Name" required>
       <input name="email" type="email" placeholder="Email" required>
 
@@ -616,15 +617,13 @@ footer a{color:#C5A059;text-decoration:none}
       <input type="date" name="date" required>
       <textarea name="message" placeholder="Tell us about your project" required></textarea>
 
-      <!-- Honeypot -->
-      <input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none">
-
-      <!-- Turnstile -->
+      <!-- Turnstile renders HERE -->
       <div id="turnstile-container"></div>
 
       <input type="submit" value="Request Booking" class="btn">
       <p id="form-status" class="form-status"></p>
     </form>
+
     
   </div>
 </section>

@@ -643,9 +643,11 @@ function initTurnstile() {
   widgetId = turnstile.render("#turnstile-container", {
     sitekey: "0x4AAAAAAACNQZMg-Gu9bIWjJ",
     theme: "dark",
+    size: "invisible",
     callback: (token) => {
-      console.log("Turnstile OK:", token);
+      console.log("Turnstile token:", token);
       turnstileToken = token;
+      submitForm(); // 🔥 continue submit AFTER token
     },
     "expired-callback": () => {
       turnstileToken = null;
@@ -659,18 +661,16 @@ function initTurnstile() {
 const form = document.getElementById("booking-form");
 const status = document.getElementById("form-status");
 
-form.addEventListener("submit", async (e) => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  if (!turnstileToken) {
-    status.textContent = "Security check in progress. Please wait a moment.";
-    status.className = "form-status show error";
-    return;
-  }
-
-  status.textContent = "Sending request…";
+  status.textContent = "Running security check…";
   status.className = "form-status show";
 
+  turnstile.execute(widgetId); // 🔥 THIS WAS MISSING
+});
+
+async function submitForm() {
   try {
     const formData = new FormData(form);
     formData.append("cf-turnstile-response", turnstileToken);
@@ -694,9 +694,8 @@ form.addEventListener("submit", async (e) => {
     status.textContent = "Something went wrong. Please try again.";
     status.className = "form-status show error";
   }
-});
+}
 </script>
-
 
 <script
   src="https://challenges.cloudflare.com/turnstile/v0/api.js"
@@ -704,6 +703,7 @@ form.addEventListener("submit", async (e) => {
   defer
   onload="initTurnstile()">
 </script>
+
 
 
 <!-- Cloudflare Web Analytics -->

@@ -617,7 +617,12 @@ footer a{color:#C5A059;text-decoration:none}
       <textarea name="message" placeholder="Tell us about your project" required></textarea>
 
       <!-- Turnstile renders HERE -->
-      <div id="turnstile-container"></div>
+      <div
+        class="cf-turnstile"
+        data-sitekey="0x4AAAAAAACNQZMg-Gu9bIWjJ"
+        data-theme="dark"
+        data-callback="onTurnstileSuccess">
+      </div>
 
       <!-- Honeypot -->
       <input type="text" name="company" tabindex="-1" autocomplete="off" style="display:none">
@@ -625,8 +630,7 @@ footer a{color:#C5A059;text-decoration:none}
       <input type="submit" value="Request Booking" class="btn">
       <p id="form-status" class="form-status"></p>
     </form>
-
-    
+      
   </div>
 </section>
 
@@ -638,40 +642,27 @@ footer a{color:#C5A059;text-decoration:none}
 <!-- Form Script -->
 <script>
 let turnstileToken = null;
-let widgetId = null;
 
-function initTurnstile() {
-  widgetId = turnstile.render("#turnstile-container", {
-    sitekey: "0x4AAAAAAACNQZMg-Gu9bIWjJ",
-    theme: "dark",
-    size: "invisible",
-    callback: (token) => {
-      console.log("Turnstile token:", token);
-      turnstileToken = token;
-      submitForm(); // 🔥 continue submit AFTER token
-    },
-    "expired-callback": () => {
-      turnstileToken = null;
-    },
-    "error-callback": () => {
-      turnstileToken = null;
-    }
-  });
+function onTurnstileSuccess(token) {
+  console.log("Turnstile token:", token);
+  turnstileToken = token;
 }
 
 const form = document.getElementById("booking-form");
 const status = document.getElementById("form-status");
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  status.textContent = "Running security check…";
+  if (!turnstileToken) {
+    status.textContent = "Security check in progress. Please wait a moment.";
+    status.className = "form-status show error";
+    return;
+  }
+
+  status.textContent = "Sending request…";
   status.className = "form-status show";
 
-  turnstile.execute(widgetId); // 🔥 THIS WAS MISSING
-});
-
-async function submitForm() {
   try {
     const formData = new FormData(form);
     formData.append("cf-turnstile-response", turnstileToken);
@@ -688,24 +679,16 @@ async function submitForm() {
 
     form.reset();
     turnstileToken = null;
-    turnstile.reset(widgetId);
 
   } catch (err) {
     console.error(err);
     status.textContent = "Something went wrong. Please try again.";
     status.className = "form-status show error";
   }
-}
+});
 </script>
 
-<script
-  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-  async
-  defer
-  onload="initTurnstile()">
-</script>
-
-
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <!-- Cloudflare Web Analytics -->
 <script

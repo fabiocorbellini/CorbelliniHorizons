@@ -97,6 +97,12 @@ section{
     background:linear-gradient(to bottom,rgba(0,0,0,.85),rgba(0,0,0,.65),rgba(0,0,0,0));
   }
 }
+.hero-video-mobile {
+  display: none;
+}
+.hero-video-desktop {
+  display: block;
+}
 .hero h1{
   font-family:'Playfair Display',serif;
   font-size:clamp(2.6rem,6vw,4.6rem);
@@ -348,25 +354,26 @@ footer a{color:#C5A059;text-decoration:none}
 
 <!-- HOME -->
 <section class="hero" id="home">
+  <!-- MOBILE VIDEO -->
   <video
+    class="hero-video hero-video-mobile"
     autoplay
     muted
     loop
     playsinline
-    preload="auto"
-    class="hero-video">
+    preload="auto">
+    <source src="/videos/hero-mobile.mp4" type="video/mp4">
+  </video>
 
-  <!-- Mobile video FIRST -->
-    <source
-      src="/videos/hero-mobile.mp4"
-      type="video/mp4"
-      media="(max-width: 768px)">
-
-  <!-- Desktop video -->
-    <source
-      src="/videos/hero-desktop.mp4"
-      type="video/mp4"
-      media="(min-width: 769px)">
+  <!-- DESKTOP VIDEO -->
+  <video
+    class="hero-video hero-video-desktop"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto">
+    <source src="/videos/hero-desktop.mp4" type="video/mp4">
   </video>
   <div class="hero-content">
     <h1>Don’t Just Visit. <span class="gold-text">Belong.</span><br>Don’t Just Record. <span class="gold-text">Immortalize.</span></h1>
@@ -398,7 +405,14 @@ footer a{color:#C5A059;text-decoration:none}
       </p>
     </div>
     <div class="profile-video">
-      <video autoplay muted loop playsinline poster="https://media.corbellini.com.br/profile-photo.jpg">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        webkit-playsinline
+        preload="metadata"
+        poster="https://media.corbellini.com.br/profile-photo.jpg">
         <source src="https://media.corbellini.com.br/profile-video.mp4" type="video/mp4">
       </video>
     </div>

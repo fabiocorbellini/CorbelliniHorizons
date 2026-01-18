@@ -618,6 +618,12 @@ footer a{color:#C5A059;text-decoration:none}
         data-sitekey="0x4AAAAAAACNQZMg-Gu9bIWjJ"
         data-callback="onTurnstileSuccess">
       </div>
+      <script>
+        let turnstileToken = null;
+      function onTurnstileSuccess(token) {
+        turnstileToken = token;
+      }
+      </script>
       <input type="submit" value="Request Booking" class="btn">
       <p id="form-status" class="form-status"></p>
     </form>
@@ -632,7 +638,9 @@ footer a{color:#C5A059;text-decoration:none}
 <!-- Form Script -->
 <script>
 const form = document.getElementById("booking-form");
-const status = document.getElementById("formStatus");
+const status = document.getElementById("form-status");
+const formData = new FormData(form);
+formData.append("cf-turnstile-response", turnstileToken);
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -641,7 +649,7 @@ form.addEventListener("submit", async (e) => {
   status.className = "form-status show";
 
   try {
-    const response = await fetch(form.action, {
+    const response = await fetch("/api/book", {
       method: "POST",
       body: new FormData(form)
     });

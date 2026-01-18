@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Corbellini Horizons offers professional photography, cinematic video, and curated travel experiences across Artists, Events, Company, and Travel Horizons.">
 <!-- Cloudflare Turnstile -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async></script>
 <!-- Open Graph / Social Preview -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Corbellini Horizons">
@@ -603,6 +603,7 @@ footer a{color:#C5A059;text-decoration:none}
     <form id="booking-form" novalidate>
       <input name="name" placeholder="Name" required>
       <input name="email" type="email" placeholder="Email" required>
+
       <select name="horizon" required>
         <option value="">Select Horizon</option>
         <option value="Artists Horizons">Artists Horizons</option>
@@ -611,19 +612,20 @@ footer a{color:#C5A059;text-decoration:none}
         <option value="Travel Horizons">Travel Horizons</option>
         <option value="Aerial Horizons">Aerial Horizons</option>
       </select>
+
       <input type="date" name="date" required>
       <textarea name="message" placeholder="Tell us about your project" required></textarea>
-      <!-- Honeypot anti-spam field (hidden) -->
+
+      <!-- Honeypot -->
       <input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none">
-      <div class="cf-turnstile"
-           data-sitekey="0x4AAAAAAACNQZMg-Gu9bIWjJ"
-           data-callback="onTurnstileSuccess"
-           data-action="booking"
-           data-theme="dark">
-      </div>
+
+      <!-- Turnstile -->
+      <div id="turnstile-container"></div>
+
       <input type="submit" value="Request Booking" class="btn">
       <p id="form-status" class="form-status"></p>
     </form>
+    
   </div>
 </section>
 
@@ -634,59 +636,64 @@ footer a{color:#C5A059;text-decoration:none}
 
 <!-- Form Script -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  let turnstileToken = null;
+let turnstileToken = null;
 
-  // MUST be global for Turnstile
-  window.onTurnstileSuccess = function (token) {
-    console.log("Turnstile success:", token);
-    turnstileToken = token;
-  };
+window.onload = () => {
+  if (window.turnstile) {
+    turnstile.render("#turnstile-container", {
+      sitekey: "0x4AAAAAAACNQZMg-Gu9bIWjJ",
+      theme: "dark",
+      action: "booking",
+      callback: (token) => {
+        console.log("Turnstile success:", token);
+        turnstileToken = token;
+      },
+      "expired-callback": () => {
+        turnstileToken = null;
+      }
+    });
+  }
+};
 
-  const form = document.getElementById("booking-form");
-  const status = document.getElementById("form-status");
+const form = document.getElementById("booking-form");
+const status = document.getElementById("form-status");
 
-  if (!form) {
-    console.error("Booking form not found");
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  if (!turnstileToken) {
+    status.textContent = "Security check in progress. Please wait a moment.";
+    status.className = "form-status show error";
     return;
   }
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  status.textContent = "Sending request…";
+  status.className = "form-status show";
 
-    if (!turnstileToken) {
-      status.textContent = "Security check in progress. Please wait a moment.";
-      status.className = "form-status show error";
-      return;
-    }
+  try {
+    const formData = new FormData(form);
+    formData.append("cf-turnstile-response", turnstileToken);
 
-    status.textContent = "Sending request…";
-    status.className = "form-status show";
+    const response = await fetch("/api/book", {
+      method: "POST",
+      body: formData
+    });
 
-    try {
-      const formData = new FormData(form);
-      formData.append("cf-turnstile-response", turnstileToken);
+    if (!response.ok) throw new Error();
 
-      const response = await fetch("/api/book", {
-        method: "POST",
-        body: formData
-      });
+    status.textContent = "Thank you! We’ll respond within 24 hours.";
+    status.className = "form-status show success";
+    form.reset();
+    turnstileToken = null;
 
-      if (!response.ok) throw new Error();
-
-      status.textContent = "Thank you! We’ll respond within 24 hours.";
-      status.className = "form-status show success";
-      form.reset();
-      turnstileToken = null;
-
-    } catch (err) {
-      console.error(err);
-      status.textContent = "Something went wrong. Please try again.";
-      status.className = "form-status show error";
-    }
-  });
+  } catch (err) {
+    console.error(err);
+    status.textContent = "Something went wrong. Please try again.";
+    status.className = "form-status show error";
+  }
 });
 </script>
+
 
 
 <!-- Cloudflare Web Analytics -->

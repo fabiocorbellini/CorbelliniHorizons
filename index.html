@@ -19,7 +19,7 @@ html{scroll-behavior:smooth}
 body{font-family:Inter,sans-serif;background:#0b0b0b;color:#f5f5f5}
 
 /* GOLD */
-.brand-gold,.gold-text{
+.gold-text,.brand-gold{
   background:linear-gradient(135deg,#C5A059,#e0c07a,#C5A059);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -54,11 +54,23 @@ nav{
 }
 .hero::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.15),rgba(0,0,0,.6));
+  background:linear-gradient(to bottom,rgba(0,0,0,.15),rgba(0,0,0,.5));
 }
 .hero-content{
   position:relative;z-index:3;
   max-width:900px;padding:0 1.5rem;
+}
+.hero-content::before{
+  content:"";position:absolute;
+  inset:-1.2rem -1.2rem;
+  background:linear-gradient(to bottom,rgba(0,0,0,.8),rgba(0,0,0,.55),rgba(0,0,0,0));
+  z-index:-1;border-radius:20px;
+}
+@media(max-width:768px){
+  .hero-content::before{
+    inset:-0.1rem -0.1rem;
+    background:linear-gradient(to bottom,rgba(0,0,0,.85),rgba(0,0,0,.65),rgba(0,0,0,0));
+  }
 }
 .hero h1{
   font-family:'Playfair Display',serif;
@@ -67,7 +79,14 @@ nav{
 }
 .hero p{font-size:1.25rem;color:#ddd;margin-bottom:2rem}
 
-/* BUTTON */
+.status-box{
+  display:inline-block;
+  padding:1rem 1.5rem;
+  border-radius:14px;
+  border:1px solid rgba(197,160,89,.5);
+  background:rgba(197,160,89,.08);
+  margin-bottom:2.5rem;
+}
 .btn{
   display:inline-block;padding:1rem 2.6rem;
   border-radius:999px;font-weight:700;
@@ -81,7 +100,7 @@ section{padding:7rem 1.5rem}
 h2{
   font-family:'Playfair Display',serif;
   font-size:clamp(2.4rem,4.5vw,3.6rem);
-  text-align:center;margin-bottom:.6rem;
+  text-align:center;margin-bottom:1rem;
 }
 .section-subtitle{
   text-align:center;color:#aaa;
@@ -95,37 +114,61 @@ h2{
 @media(min-width:900px){
   .profile-grid{grid-template-columns:1.2fr .8fr}
 }
+.profile-photo{
+  aspect-ratio:1/1;
+  border-radius:24px;
+  background:#222;
+  border:1px solid rgba(197,160,89,.3);
+} 
 .profile-video{
+  position:relative;
   aspect-ratio:1/1;
   border-radius:24px;
   overflow:hidden;
   border:1px solid rgba(197,160,89,.3);
-}
+  background:#000;
+} 
 .profile-video video{
-  width:100%;height:100%;object-fit:cover;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.profile-video::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.15),
+    rgba(0,0,0,.35)
+  );
+  pointer-events:none;
 }
 
 /* CARDS */
 .grid{display:grid;gap:2rem}
 @media(min-width:1024px){
   .grid-3{grid-template-columns:repeat(3,1fr)}
-  .grid-2{grid-template-columns:repeat(2,1fr)}
+  .grid-2{grid-template-columns:repeat(2,1fr);max-width:900px;margin:auto}
 }
 .card{
   background:rgba(255,255,255,.03);
   border:1px solid rgba(197,160,89,.25);
   border-radius:28px;
   padding:2.5rem;
-  color:#f5f5f5;text-decoration:none;
+  text-decoration:none;color:#f5f5f5;
   transition:.35s ease;
 }
 .card:hover{transform:translateY(-6px);border-color:#C5A059}
 .card h3{
   font-family:'Playfair Display',serif;
-  color:#C5A059;font-size:2rem;margin-bottom:.6rem;
+  color:#C5A059;
+  font-size:2rem;
+  margin-bottom:.6rem;
 }
+.card p{color:#ccc;margin-bottom:1rem}
 .features div{color:#bbb;font-size:.95rem;margin-bottom:.4rem}
-.card .cta{display:block;margin-top:1.2rem;color:#C5A059}
+.card .cta{display:block;margin-top:1.5rem;color:#C5A059;font-size:.9rem}
 
 /* PORTFOLIO */
 .portfolio-block{margin-bottom:5rem}
@@ -133,42 +176,85 @@ h2{
 @media(max-width:900px){.thumb-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:500px){.thumb-grid{grid-template-columns:1fr}}
 .thumb{
-  position:relative;aspect-ratio:1/1;
-  border-radius:18px;overflow:hidden;
+  aspect-ratio:1/1;
+  background:#1a1a1a;
+  border-radius:18px;
   border:1px solid rgba(197,160,89,.3);
 }
 .thumb img{
-  width:100%;height:100%;
-  object-fit:cover;transition:.35s ease;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:18px;
+  transition:transform .35s ease;
 }
-.thumb:hover img{transform:scale(1.05)}
+.thumb:hover img{
+  transform:scale(1.05);
+}
+.thumb{
+  position:relative;
+  overflow:hidden;
+}
 .thumb-overlay{
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,.55);
-  opacity:0;color:#fff;font-weight:600;
-  transition:.35s ease;
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:600;
+  font-size:0.95rem;
+  letter-spacing:0.02em;
+  color:#f5f5f5;
+  background:rgba(0,0,0,0.55);
+  opacity:0;
+  transition:opacity .35s ease;
+  text-align:center;
 }
-.thumb:hover .thumb-overlay{opacity:1}
+.thumb:hover .thumb-overlay{
+  opacity:1;
+}
+/* Optional: subtle gold accent */
+.thumb-overlay::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border:1px solid rgba(197,160,89,.6);
+  border-radius:18px;
+}
+
+
+/* GEAR */
+.gear-grid{display:grid;gap:2rem}
+@media(min-width:900px){.gear-grid{grid-template-columns:repeat(2,1fr)}}
 
 /* FORM */
-form{max-width:600px;margin:auto}
+form{max-width:600px;margin:2rem auto 0}
 input,select,textarea{
   width:100%;padding:1rem;margin-bottom:1rem;
-  background:#121212;border:1px solid #333;
-  color:#fff;border-radius:10px;
+  background:#121212;border:1px solid #333;color:#fff;border-radius:10px
 }
+input[type=date]{height:3.2rem}
 textarea{min-height:140px}
-
-/* FIX iOS DATE */
-input[type="date"]{
-  width:100%;max-width:100%;
-  appearance:none;-webkit-appearance:none;
-  box-sizing:border-box;
+input[type=submit]{border:none;cursor:pointer}
+/* Fix iOS date input width */
+input[type="date"] {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
 }
+/* iOS Safari specific tweak */
+@supports (-webkit-touch-callout: none) {
+  input[type="date"] {
+    padding-right: 1rem;
+  }
+}
+
 
 /* FOOTER */
 footer{text-align:center;padding:3rem 1.5rem;color:#999}
+footer a{color:#C5A059;text-decoration:none}
 </style>
 </head>
 
@@ -191,12 +277,15 @@ footer{text-align:center;padding:3rem 1.5rem;color:#999}
 <!-- HOME -->
 <section class="hero" id="home">
   <video autoplay muted loop playsinline>
-    <source src="https://media.corbellini.com.br/hero-video-desktop.mp4" type="video/mp4">
+    <source src="https://media.corbellini.com.br/hero-video-desktop.mp4">
   </video>
   <div class="hero-content">
-    <h1>Don’t Just Visit. <span class="gold-text">Belong.</span><br>
-    Don’t Just Record. <span class="gold-text">Immortalize.</span></h1>
+    <h1>Don’t Just Visit. <span class="gold-text">Belong.</span><br>Don’t Just Record. <span class="gold-text">Immortalize.</span></h1>
     <p>Professional Photography, Cinematography & Curated Travel</p>
+    <div class="status-box">
+      Currently in: <strong>Houston, TX</strong><br>
+      Next Horizons: Cancun (Mar) · Rio de Janeiro (May)
+    </div>
     <a href="#booking" class="btn">Book Your Horizon</a>
   </div>
 </section>
@@ -208,16 +297,24 @@ footer{text-align:center;padding:3rem 1.5rem;color:#999}
       <h2>Profile</h2>
       <p class="section-subtitle">Where Moments Become Masterpieces</p>
       <p>
-        Multicultural photographer and visual storyteller with a global perspective.
-        I don’t just document moments — I translate cultures, energy, and emotion
-        into timeless imagery.
+        I'm not just a photographer or travel guide—I'm your local friend who has lived across
+        four countries on three continents. From the vibrant rhythm of Rio de Janeiro to the
+        ancient temples of Indonesia, from the cultural tapestry of Mexico to the innovation
+        hubs of the United States, I've not just visited these places—I've belonged to them.
+        <br><br>
+        This multicultural lens fuels everything at Corbellini Horizons. Whether I'm capturing
+        sonic energy at a live show, guiding you through hidden neighborhoods, or filming
+        cinematic 8K footage from the sky, I bring the perspective of someone who understands
+        what it means to truly belong.
       </p>
     </div>
     <div class="profile-video">
-      <video autoplay muted loop playsinline>
+      <video autoplay muted loop playsinline preload="metadata">
         <source src="https://media.corbellini.com.br/profile-video.mp4" type="video/mp4">
-      </video>
-    </div>
+        Your browser does not support the video tag.
+    </video>
+</div>
+
   </div>
 </section>
 
@@ -225,10 +322,66 @@ footer{text-align:center;padding:3rem 1.5rem;color:#999}
 <section id="horizons">
   <div class="container">
     <h2>The Five Horizons</h2>
-    <p class="section-subtitle">
-      Where artistry, authenticity, and excellence converge
-    </p>
-    <!-- (cards remain unchanged as requested) -->
+    <p class="section-subtitle">Where artistry, authenticity, and excellence converge across five distinct pillars</p>
+
+    <div class="grid grid-3">
+      <a href="#portfolio-artists" class="card">
+        <h3>Artists Horizons</h3>
+        <p>Sonic storytelling and creative portraits for musicians and soloists.</p>
+        <div class="features">
+          <div>◆ Album Cover Photography</div>
+          <div>◆ Live Performance Documentation</div>
+          <div>◆ Artist Brand Development</div>
+        </div>
+        <span class="cta">View Portfolio ↓</span>
+      </a>
+
+      <a href="#portfolio-events" class="card">
+        <h3>Events Horizons</h3>
+        <p>Proposals, milestones, and celebrations captured cinematically.</p>
+        <div class="features">
+          <div>◆ Proposal Photography</div>
+          <div>◆ Anniversary Celebrations</div>
+          <div>◆ Birthday & Milestone Events</div>
+        </div>
+        <span class="cta">View Portfolio ↓</span>
+      </a>
+
+      <a href="#portfolio-company" class="card">
+        <h3>Company Horizons</h3>
+        <p>Professional branding imagery for businesses and teams.</p>
+        <div class="features">
+          <div>◆ Executive Headshots</div>
+          <div>◆ Team Group Portraits</div>
+          <div>◆ Brand Cohesion Strategy</div>
+        </div>
+        <span class="cta">View Portfolio ↓</span>
+      </a>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:2rem">
+      <a href="#portfolio-travel" class="card">
+        <h3>Travel Horizons</h3>
+        <p>Bespoke travel planning and cultural immersion.</p>
+        <div class="features">
+          <div>◆ Custom Itinerary Design</div>
+          <div>◆ Translation & Cultural Bridge</div>
+          <div>◆ Hidden Gem Discovery</div>
+        </div>
+        <span class="cta">View Portfolio ↓</span>
+      </a>
+
+      <div class="card">
+        <h3>Aerial Horizons</h3>
+        <p>8K cinematic drone footage and immersive perspectives.</p>
+        <div class="features">
+          <div>◆ 8K Drone Cinematography</div>
+          <div>◆ 360° Panoramic Capture</div>
+          <div>◆ Property & Event Showcase</div>
+        </div>
+        <span class="cta">Coming Soon</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -237,8 +390,96 @@ footer{text-align:center;padding:3rem 1.5rem;color:#999}
   <div class="container">
     <h2>Portfolio</h2>
 
-    <!-- Artists / Events / Company / Travel remain exactly as last milestone -->
-    <!-- Already validated in previous steps -->
+    <div id="portfolio-artists" class="portfolio-block">
+      <h3 class="brand-gold">Artists Horizons</h3>
+      <div class="thumb-grid">
+
+        <a href="https://www.instagram.com/p/C5bZj9ZJ-c4d-xYqBGno2usRGL-AKml2yyygSE0/" target="_blank" class="thumb">
+          <img src="https://media.corbellini.com.br/portfolio-artist-01.jpg" alt="Artists Horizons Portfolio 1" loading="lazy">
+          <span class="thumb-overlay">View on Instagram ↗</span>
+        </a>
+
+        <a href="https://www.instagram.com/p/DTqDrjVjrOr4-lfIp6FGkry5pzUwuQNdiyyiCw0/" target="_blank" class="thumb">
+          <img src="https://media.corbellini.com.br/portfolio-artist-02.jpg" alt="Artists Horizons Portfolio 2" loading="lazy">
+          <span class="thumb-overlay">View on Instagram ↗</span>
+        </a>
+
+        <a href="https://www.instagram.com/p/C44XaYqLkoVAM3D10uaTJWZepzf16boBjSwQRA0/" target="_blank" class="thumb">
+          <img src="https://media.corbellini.com.br/portfolio-artist-03.jpg" alt="Artists Horizons Portfolio 2" loading="lazy">
+          <span class="thumb-overlay">View on Instagram ↗</span>
+        </a>
+
+      </div>
+    </div>
+
+
+    <div id="portfolio-events" class="portfolio-block">
+      <h3 class="brand-gold">Events Horizons</h3>
+      <div class="thumb-grid">
+
+        <a href="https://www.instagram.com/p/DTqHs1jDi0pu3uBk7adOly6bZyYVBMyp6zEVFc0/" target="_blank" class="thumb">
+          <img src="https://media.corbellini.com.br/portfolio-event-01.jpg" alt="Events Horizons Portfolio 1" loading="lazy">
+          <span class="thumb-overlay">View on Instagram ↗</span>
+        </a>
+
+        <a href="https://www.instagram.com/p/DTqIfA_DqEhu6zzW9v8EQRRxUJf29T-eS4ym2E0/" target="_blank" class="thumb">
+          <img src="https://media.corbellini.com.br/portfolio-event-02.jpg" alt="Events Horizons Portfolio 2" loading="lazy">
+          <span class="thumb-overlay">View on Instagram ↗</span>
+        </a>
+
+        <a href="https://www.instagram.com/p/DTqFfRQDoWbIeCWEGqctXHTshVolQA34hFGcog0/" target="_blank" class="thumb">
+          <img src="https://media.corbellini.com.br/portfolio-event-03.jpg" alt="Events Horizons Portfolio 3" loading="lazy">
+          <span class="thumb-overlay">View on Instagram ↗</span>
+        </a>
+
+      </div>
+    </div>
+
+
+    <div id="portfolio-company" class="portfolio-block">
+      <h3 class="brand-gold">Company Horizons</h3>
+      <div class="thumb-grid">
+
+        <a href="https://www.instagram.com/p/DTofEMejnoSE9hqVkFLkZCFuQfib8h1mO6NXsY0/" target="_blank" class="thumb">
+          <img src="https://media.corbellini.com.br/portfolio-company-01.jpg" alt="Company Horizons Portfolio 1" loading="lazy">
+          <span class="thumb-overlay">View on Instagram ↗</span>
+        </a>
+
+        <a href="https://www.instagram.com/p/DTofB95DtRFPBOaHuAr4qlFuDMrpp4rOEO5YqA0/" target="_blank" class="thumb">
+          <img src="https://media.corbellini.com.br/portfolio-company-02.jpg" alt="Company Horizons Portfolio 2" loading="lazy">
+          <span class="thumb-overlay">View on Instagram ↗</span>
+        </a>
+
+        <a href="https://www.instagram.com/p/DTqKtt_Dln1n04blFmAIbWVoj2DitdnSZMewx40/" target="_blank" class="thumb">
+          <img src="https://media.corbellini.com.br/portfolio-company-03.jpg" alt="Company Horizons Portfolio 3" loading="lazy">
+          <span class="thumb-overlay">View on Instagram ↗</span>
+        </a>
+
+      </div>
+    </div>
+
+    <div id="portfolio-travel" class="portfolio-block">
+      <h3 class="brand-gold">Travel Horizons</h3>
+      <div class="thumb-grid">
+
+        <a href="https://www.instagram.com/p/DTqN0lljvpaeiiFPkY1G_H1F8mTH8_JUX_e7hc0/" target="_blank" class="thumb">
+          <img src="https://media.corbellini.com.br/portfolio-travel-01.jpg" alt="Travel Horizons Portfolio 1" loading="lazy">
+          <span class="thumb-overlay">View on Instagram ↗</span>
+        </a>
+
+        <a href="https://www.instagram.com/p/DTqNf8FDua7zto6g8RvdVHSaMUWyZ-wmg4Kb200/" target="_blank" class="thumb">
+          <img src="https://media.corbellini.com.br/portfolio-travel-02.jpg" alt="Travel Horizons Portfolio 2" loading="lazy">
+          <span class="thumb-overlay">View on Instagram ↗</span>
+        </a>
+
+        <a href="https://www.instagram.com/p/DTqQCcVjlN6vUvKgV0TEnYe0HHMNVVgwaLmZL00/" target="_blank" class="thumb">
+          <img src="https://media.corbellini.com.br/portfolio-travel-03.jpg" alt="Travel Horizons Portfolio 3" loading="lazy">
+          <span class="thumb-overlay">View on Instagram ↗</span>
+        </a>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -246,7 +487,44 @@ footer{text-align:center;padding:3rem 1.5rem;color:#999}
 <section id="gear">
   <div class="container">
     <h2>Gear Setup</h2>
-    <!-- your gear bullets remain -->
+    <p class="section-subtitle">Professional tools for exceptional results</p>
+    <div class="gear-grid">
+      <div class="card">
+        <h3>Canon System</h3>
+        <p>Full-frame professional DSLR for photography and video.</p>
+        <div class="features">
+          <div>◆ Canon EF 24–70mm f/2.8L</div>
+          <div>◆ Canon EF 70–200mm f/2.8L</div>
+          <div>◆ Canon Speedlite Flash</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Drone</h3>
+        <p>Cinema-grade aerial cinematography.</p>
+        <div class="features">
+          <div>◆ 8K Ultra HD Recording</div>
+          <div>◆ 360° Panoramic Capture</div>
+          <div>◆ Follow Mode Tracking</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Mobile</h3>
+        <p>Pro-level mobile cinematography.</p>
+        <div class="features">
+          <div>◆ ProRAW & ProRes</div>
+          <div>◆ Advanced Computational Photography</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Post-Production</h3>
+        <p>The magic behind the frame.</p>
+        <div class="features">
+          <div>◆ Luminar Neo (AI Editing)</div>
+          <div>◆ CapCut Video Editor</div>
+          <div>◆ D-ID AI Video Creation</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -254,18 +532,28 @@ footer{text-align:center;padding:3rem 1.5rem;color:#999}
 <section id="booking">
   <div class="container">
     <h2>Book Your Horizon</h2>
+    <p class="section-subtitle">Tell us about your vision. We'll craft an experience that transcends expectations.</p>
     <form>
-      <input type="text" placeholder="Name">
-      <input type="email" placeholder="Email">
+      <input placeholder="Name">
+      <input placeholder="Email">
+      <select>
+        <option>Select Horizon</option>
+        <option>Artists Horizons</option>
+        <option>Events Horizons</option>
+        <option>Company Horizons</option>
+        <option>Travel Horizons</option>
+        <option>Aerial Horizons</option>
+      </select>
       <input type="date">
       <textarea placeholder="Tell us about your project"></textarea>
-      <input type="submit" class="btn" value="Request Booking">
+      <input type="submit" value="Request Booking" class="btn">
     </form>
   </div>
 </section>
 
 <footer>
-  © Corbellini Horizons
+  © 2026 All rights reserved · email:
+  <a href="mailto:corbellini@gmail.com?subject=Corbellini%20Horizons">Corbellini</a>
 </footer>
 
 </body>

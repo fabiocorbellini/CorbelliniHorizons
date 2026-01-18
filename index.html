@@ -620,6 +620,9 @@ footer a{color:#C5A059;text-decoration:none}
       <!-- Turnstile renders HERE -->
       <div id="turnstile-container"></div>
 
+      <!-- Honeypot -->
+      <input type="text" name="company" tabindex="-1" autocomplete="off" style="display:none">
+
       <input type="submit" value="Request Booking" class="btn">
       <p id="form-status" class="form-status"></p>
     </form>
@@ -638,25 +641,23 @@ footer a{color:#C5A059;text-decoration:none}
 let turnstileToken = null;
 let turnstileWidgetId = null;
 
-document.addEventListener("DOMContentLoaded", () => {
-  if (!window.turnstile) {
-    console.error("Turnstile not loaded");
-    return;
-  }
-
+function initTurnstile() {
   turnstileWidgetId = turnstile.render("#turnstile-container", {
     sitekey: "0x4AAAAAAACNQZMg-Gu9bIWjJ",
     theme: "dark",
     action: "booking",
     callback: (token) => {
-      console.log("Turnstile token received");
+      console.log("Turnstile solved");
       turnstileToken = token;
     },
     "expired-callback": () => {
       turnstileToken = null;
+    },
+    "error-callback": () => {
+      turnstileToken = null;
     }
   });
-});
+}
 
 const form = document.getElementById("booking-form");
 const status = document.getElementById("form-status");
@@ -690,8 +691,7 @@ form.addEventListener("submit", async (e) => {
     form.reset();
     turnstileToken = null;
 
-    // Reset Turnstile for next submission
-    if (window.turnstile && turnstileWidgetId !== null) {
+    if (turnstileWidgetId !== null) {
       turnstile.reset(turnstileWidgetId);
     }
 
@@ -702,6 +702,14 @@ form.addEventListener("submit", async (e) => {
   }
 });
 </script>
+
+<script
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+  async
+  defer
+  onload="initTurnstile()">
+</script>
+
 
 <!-- Cloudflare Web Analytics -->
 <script

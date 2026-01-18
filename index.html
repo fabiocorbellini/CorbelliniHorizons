@@ -41,6 +41,9 @@ nav{
   margin-left:1.2rem;font-weight:500;
 }
 .nav-inner a:hover{color:#C5A059}
+section{
+  scroll-margin-top:90px;
+}
 
 /* HERO */
 .hero{
@@ -113,6 +116,26 @@ h2{
 }
 @media(min-width:900px){
   .profile-grid{grid-template-columns:1.2fr .8fr}
+}
+@media (max-width: 768px) {
+  .profile-video video {
+    display: none;
+  }
+.profile-video {
+    background-image: url("https://media.corbellini.com.br/profile-photo.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .profile-video video {
+    display: none;
+  }
+  .profile-video {
+    background-image: url("https://media.corbellini.com.br/profile-photo.jpg");
+    background-size: cover;
+    background-position: center;
+  }
 }
 .profile-photo{
   aspect-ratio:1/1;
@@ -309,10 +332,10 @@ footer a{color:#C5A059;text-decoration:none}
       </p>
     </div>
     <div class="profile-video">
-      <video autoplay muted loop playsinline preload="metadata">
+      <video autoplay muted loop playsinline poster="https://media.corbellini.com.br/profile-photo.jpg">
         <source src="https://media.corbellini.com.br/profile-video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+      </video>
+    </div>
 </div>
 
   </div>

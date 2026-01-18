@@ -273,6 +273,12 @@ input[type="date"] {
     padding-right: 1rem;
   }
 }
+/* Form status message */
+.form-status {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #C5A059;
+}
 
 
 /* FOOTER */
@@ -556,7 +562,7 @@ footer a{color:#C5A059;text-decoration:none}
   <div class="container">
     <h2>Book Your Horizon</h2>
     <p class="section-subtitle">Tell us about your vision. We'll craft an experience that transcends expectations.</p>
-    <form method="POST" action="/api/book">
+    <form method="POST" action="/api/book" id="booking-form">
       <input name="name" placeholder="Name" required>
       <input name="email" type="email" placeholder="Email" required>
       <select name="horizon" required>
@@ -569,7 +575,10 @@ footer a{color:#C5A059;text-decoration:none}
       </select>
       <input type="date" name="date" required>
       <textarea name="message" placeholder="Tell us about your project" required></textarea>
+      <!-- Honeypot anti-spam field (hidden) -->
+      <input type="text" name="company" tabindex="-1" autocomplete="off" style="display:none">
       <input type="submit" value="Request Booking" class="btn">
+      <p id="form-status" class="form-status"></p>
     </form>
   </div>
 </section>
@@ -578,6 +587,28 @@ footer a{color:#C5A059;text-decoration:none}
   © 2026 All rights reserved · email:
   <a href="mailto:corbellini@gmail.com?subject=Corbellini%20Horizons">Corbellini</a>
 </footer>
+
+<script>
+const form = document.getElementById("booking-form");
+const status = document.getElementById("form-status");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  status.textContent = "Sending…";
+
+  const response = await fetch(form.action, {
+    method: "POST",
+    body: new FormData(form)
+  });
+
+  if (response.ok) {
+    status.textContent = "Thank you! We’ll respond within 24 hours.";
+    form.reset();
+  } else {
+    status.textContent = "Something went wrong. Please try again.";
+  }
+});
+</script>
 
 </body>
 </html>

@@ -3,7 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Corbellini Horizons offers professional photography, cinematic video, and curated travel experiences across Artists, Events, Company, and Travel Horizons.">
 
+<!-- Open Graph / Social Preview -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Corbellini Horizons">
+<meta property="og:description" content="Professional Photography, Cinematic Video & Curated Travel Experiences. Don’t just visit. Belong.">
+<meta property="og:url" content="https://corbellini.com.br">
+<meta property="og:image" content="https://media.corbellini.com.br/profile-photo.jpg">
+
+<!-- WhatsApp / Instagram compatibility -->
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter fallback -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Corbellini Horizons">
+<meta name="twitter:description" content="Photography, Film & Curated Travel Experiences.">
+<meta name="twitter:image" content="https://media.corbellini.com.br/profile-photo.jpg">
+  
 <title>Corbellini Horizons</title>
 
 <link rel="icon" type="image/jpeg" href="https://media.corbellini.com.br/icon-camera.jpg">
@@ -279,6 +297,27 @@ input[type="date"] {
   font-size: 0.95rem;
   color: #C5A059;
 }
+/* Booking success animation */
+.form-status {
+  margin-top: 1rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
+
+.form-status.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.form-status.success {
+  color: #C5A059;
+}
+
+.form-status.error {
+  color: #ff6b6b;
+}
 
 
 /* FOOTER */
@@ -306,7 +345,7 @@ footer a{color:#C5A059;text-decoration:none}
 <!-- HOME -->
 <section class="hero" id="home">
   <video autoplay muted loop playsinline>
-    <source src="https://media.corbellini.com.br/hero-video-desktop.mp4">
+    <source src="https://media.corbellini.com.br/hero-video-desktop.mp4" type="video/mp4">
   </video>
   <div class="hero-content">
     <h1>Don’t Just Visit. <span class="gold-text">Belong.</span><br>Don’t Just Record. <span class="gold-text">Immortalize.</span></h1>
@@ -343,8 +382,6 @@ footer a{color:#C5A059;text-decoration:none}
       </video>
     </div>
 </div>
-
-  </div>
 </section>
 
 <!-- HORIZONS -->
@@ -588,27 +625,42 @@ footer a{color:#C5A059;text-decoration:none}
   <a href="mailto:corbellini@gmail.com?subject=Corbellini%20Horizons">Corbellini</a>
 </footer>
 
+<!-- Form Script -->
 <script>
 const form = document.getElementById("booking-form");
-const status = document.getElementById("form-status");
+const status = document.getElementById("formStatus");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  status.textContent = "Sending…";
 
-  const response = await fetch(form.action, {
-    method: "POST",
-    body: new FormData(form)
-  });
+  status.textContent = "Sending request…";
+  status.className = "form-status show";
 
-  if (response.ok) {
-    status.textContent = "Thank you! We’ll respond within 24 hours.";
-    form.reset();
-  } else {
+  try {
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form)
+    });
+
+    if (response.ok) {
+      status.textContent = "Thank you! We’ll respond within 24 hours.";
+      status.classList.add("success");
+      form.reset();
+    } else {
+      throw new Error("Submission failed");
+    }
+  } catch (err) {
     status.textContent = "Something went wrong. Please try again.";
+    status.classList.add("error");
   }
 });
 </script>
 
+<!-- Cloudflare Web Analytics -->
+<script
+  defer
+  src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN"}'>
+</script>
 </body>
 </html>

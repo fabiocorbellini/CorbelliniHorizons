@@ -599,7 +599,7 @@ footer a{color:#C5A059;text-decoration:none}
   <div class="container">
     <h2>Book Your Horizon</h2>
     <p class="section-subtitle">Tell us about your vision. We'll craft an experience that transcends expectations.</p>
-    <form method="POST" action="/api/book" id="booking-form">
+    <form id="booking-form" novalidate>
       <input name="name" placeholder="Name" required>
       <input name="email" type="email" placeholder="Email" required>
       <select name="horizon" required>
@@ -613,7 +613,11 @@ footer a{color:#C5A059;text-decoration:none}
       <input type="date" name="date" required>
       <textarea name="message" placeholder="Tell us about your project" required></textarea>
       <!-- Honeypot anti-spam field (hidden) -->
-      <input type="text" name="company" tabindex="-1" autocomplete="off" style="display:none">
+      <input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none">
+      <div class="cf-turnstile"
+        data-sitekey="0x4AAAAAAACNQZMg-Gu9bIWjJ"
+        data-callback="onTurnstileSuccess">
+      </div>
       <input type="submit" value="Request Booking" class="btn">
       <p id="form-status" class="form-status"></p>
     </form>
@@ -655,6 +659,7 @@ form.addEventListener("submit", async (e) => {
   }
 });
 </script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <!-- Cloudflare Web Analytics -->
 <script

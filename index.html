@@ -10,14 +10,12 @@
 <link rel="icon" type="image/jpeg" href="https://media.corbellini.com.br/icon-camera.jpg">
 <link rel="apple-touch-icon" href="https://media.corbellini.com.br/icon-camera.jpg">
 
-<meta name="description" content="Professional photography, cinematatography, aerials, and bespoke travel experiences.">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:Inter,sans-serif;background:#0b0b0b;color:#f5f5f5}
 
@@ -35,52 +33,113 @@ nav{
   backdrop-filter:blur(12px);
 }
 .nav-inner{
-  max-width:1200px;margin:auto;padding:1rem 1.5rem;
+  max-width:1200px;margin:auto;
+  padding:1rem 1.5rem;
   display:flex;justify-content:space-between;align-items:center;
 }
 .nav-inner a{
-  color:#fff;text-decoration:none;margin-left:1.2rem;
+  color:#fff;text-decoration:none;
+  margin-left:1.2rem;font-weight:500;
 }
 .nav-inner a:hover{color:#C5A059}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;
+}
 .hero::before{
   content:"";position:absolute;inset:0;
   background:url("https://media.corbellini.com.br/hero-poster-mobile.jpg") center/cover no-repeat;
 }
-.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero video{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;
+}
 .hero::after{
   content:"";position:absolute;inset:0;
   background:linear-gradient(to bottom,rgba(0,0,0,.12),rgba(0,0,0,.45));
 }
-.hero-content{position:relative;z-index:3;max-width:900px;padding:0 1.5rem}
+.hero-content{
+  position:relative;z-index:3;
+  max-width:900px;padding:0 1.5rem;
+}
 .hero-content::before{
-  content:"";position:absolute;inset:-1.2rem -1.2rem;
-  background:linear-gradient(to bottom,rgba(0,0,0,.8),rgba(0,0,0,.55),rgba(0,0,0,0));
+  content:"";position:absolute;
+  inset:-1.2rem -1.2rem;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.80),
+    rgba(0,0,0,.55),
+    rgba(0,0,0,0)
+  );
   z-index:-1;border-radius:20px;
 }
 @media(max-width:768px){
   .hero-content::before{
     inset:-0.1rem -0.1rem;
-    background:linear-gradient(to bottom,rgba(0,0,0,.85),rgba(0,0,0,.65),rgba(0,0,0,0));
+    background:linear-gradient(
+      to bottom,
+      rgba(0,0,0,.85),
+      rgba(0,0,0,.65),
+      rgba(0,0,0,0)
+    );
   }
 }
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,6vw,4.6rem);margin-bottom:1rem}
-.hero p{font-size:1.25rem;margin-bottom:2rem;color:#ddd}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.6rem,6vw,4.6rem);
+  margin-bottom:1rem;
+}
+.hero p{font-size:1.25rem;color:#ddd;margin-bottom:2rem}
+
+.status-box{
+  display:inline-block;
+  padding:1rem 1.5rem;
+  border-radius:14px;
+  border:1px solid rgba(197,160,89,.5);
+  background:rgba(197,160,89,.08);
+  margin-bottom:2.5rem;
+}
+
 .btn{
-  padding:1rem 2.6rem;border-radius:999px;
-  background:linear-gradient(135deg,#C5A059,#e0c07a);
-  color:#000;text-decoration:none;font-weight:700;
+  display:inline-block;
+  padding:1rem 2.6rem;
+  border-radius:999px;
+  font-weight:700;
+  background:linear-gradient(135deg,#C5A059,#e0c07a,#C5A059);
+  color:#0b0b0b;text-decoration:none;
 }
 
 /* SECTIONS */
 section{padding:7rem 1.5rem}
 .container{max-width:1200px;margin:auto}
-h2{font-family:'Playfair Display',serif;text-align:center;margin-bottom:1.5rem;font-size:clamp(2.2rem,4vw,3.4rem)}
-.section-subtitle{text-align:center;color:#aaa;max-width:760px;margin:0 auto 4rem}
+h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.4rem,4.5vw,3.6rem);
+  text-align:center;margin-bottom:1.5rem;
+}
+.section-subtitle{
+  text-align:center;color:#aaa;
+  max-width:760px;margin:0 auto 4rem;
+}
 
-/* CARDS */
+/* ABOUT */
+.about-grid{
+  display:grid;gap:3rem;align-items:center;
+}
+@media(min-width:900px){
+  .about-grid{grid-template-columns:1.2fr .8fr}
+}
+.about-photo{
+  aspect-ratio:1/1;
+  border-radius:24px;
+  background:url("https://www.instagram.com/p/DTdcYcAjhAuu0mjxwwLh9sw-tfGnAfuQDFRq9Q0/media/?size=l") center/cover no-repeat;
+  border:1px solid rgba(197,160,89,.3);
+}
+
+/* HORIZONS */
 .grid{display:grid;gap:2rem}
 @media(min-width:1024px){
   .grid-3{grid-template-columns:repeat(3,1fr)}
@@ -89,50 +148,54 @@ h2{font-family:'Playfair Display',serif;text-align:center;margin-bottom:1.5rem;f
 .card{
   background:rgba(255,255,255,.03);
   border:1px solid rgba(197,160,89,.25);
-  border-radius:28px;padding:2.5rem;
-  cursor:pointer;transition:.35s ease;
+  border-radius:28px;
+  padding:2.5rem;
+  cursor:pointer;
+  transition:.35s ease;
+  text-decoration:none;
+  color:#f5f5f5;
 }
 .card:hover{
   transform:translateY(-6px);
   border-color:#C5A059;
 }
-.card .icon{font-size:2rem;margin-bottom:1rem}
-.card h3{font-family:'Playfair Display',serif;color:#C5A059;margin-bottom:.5rem}
-.card small{display:block;margin-top:1rem;color:#C5A059;font-size:.85rem}
-
-/* ABOUT */
-.about-grid{display:grid;gap:3rem;align-items:center}
-@media(min-width:900px){.about-grid{grid-template-columns:1.2fr .8fr}}
-.about-photo{
-  aspect-ratio:1/1;border-radius:24px;
-  background:url("https://www.instagram.com/p/DTdcYcAjhAuu0mjxwwLh9sw-tfGnAfuQDFRq9Q0/media/?size=l") center/cover no-repeat;
-  border:1px solid rgba(197,160,89,.3);
+.card h3{
+  font-family:'Playfair Display',serif;
+  color:#C5A059;
+  font-size:2rem;
+  margin-bottom:.6rem;
+}
+.card p{color:#ccc;margin-bottom:1.2rem}
+.features div{color:#bbb;font-size:.95rem;margin-bottom:.4rem}
+.card .cta{
+  display:block;
+  margin-top:1.5rem;
+  font-size:.9rem;
+  color:#C5A059;
 }
 
-/* PROFILE */
-.profile-section{margin-bottom:5rem}
-.thumb-grid{
-  display:grid;gap:1.5rem;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+/* GEAR */
+.gear-grid{display:grid;gap:2rem}
+@media(min-width:900px){.gear-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* FORM */
+form{max-width:600px;margin:2rem auto 0}
+label{display:block;margin-bottom:.4rem;color:#aaa;font-size:.9rem}
+input,select,textarea{
+  width:100%;padding:1rem;margin-bottom:1rem;
+  background:#121212;border:1px solid #333;
+  color:#fff;border-radius:10px;
 }
-.thumb{
-  position:relative;overflow:hidden;border-radius:18px;
-  border:1px solid rgba(197,160,89,.3);
-}
-.thumb img{width:100%;height:100%;object-fit:cover;transition:.4s}
-.thumb:hover img{transform:scale(1.06)}
-.thumb::after{
-  content:"View on Instagram";
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,.45);
-  opacity:0;transition:.3s;
-  font-size:.9rem;color:#fff;
-}
-.thumb:hover::after{opacity:1}
+input[type=date]{height:3.2rem}
+textarea{min-height:140px}
+input[type=submit]{border:none;cursor:pointer}
 
 /* FOOTER */
-footer{text-align:center;padding:3rem 1.5rem;color:#999}
+footer{
+  padding:3rem 1.5rem;
+  text-align:center;
+  color:#999;
+}
 footer a{color:#C5A059;text-decoration:none}
 </style>
 </head>
@@ -144,22 +207,31 @@ footer a{color:#C5A059;text-decoration:none}
     <strong class="brand-gold">Corbellini Horizons</strong>
     <div>
       <a href="#home">Home</a>
-      <a href="#profile">Profile</a>
+      <a href="#about">Profile</a>
       <a href="#services">Horizons</a>
+      <a href="#gear">Gear</a>
       <a href="#booking">Booking</a>
     </div>
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero" id="home">
   <video autoplay muted loop playsinline>
     <source src="https://media.corbellini.com.br/hero-video-mobile.mp4" media="(max-width:767px)">
     <source src="https://media.corbellini.com.br/hero-video-desktop.mp4" media="(min-width:768px)">
   </video>
   <div class="hero-content">
-    <h1>Don’t Just Visit. <span class="gold-text">Belong.</span><br>Don’t Just Record. <span class="gold-text">Immortalize.</span></h1>
+    <h1>
+      Don’t Just Visit. <span class="gold-text">Belong.</span><br>
+      Don’t Just Record. <span class="gold-text">Immortalize.</span>
+    </h1>
     <p>Professional Photography, Cinematography & Curated Travel</p>
-    <a href="#services" class="btn">Explore Horizons</a>
+    <div class="status-box">
+      Currently in: <strong>Houston, TX</strong><br>
+      Next Horizons: Cancun (Mar) · Rio de Janeiro (May)
+    </div>
+    <a href="#booking" class="btn">Book Your Horizon</a>
   </div>
 </section>
 
@@ -169,102 +241,149 @@ footer a{color:#C5A059;text-decoration:none}
     <div>
       <h2>About</h2>
       <p>
-        I'm not just a photographer or travel guide—I'm your local friend who has lived across four countries
-        on three continents. From Rio to Indonesia, Mexico to the United States, I've not just visited —
-        I've belonged.
+        I'm not just a photographer or travel guide—I'm your local friend who has lived across
+        four countries on three continents. From the vibrant rhythm of Rio de Janeiro to the
+        ancient temples of Indonesia, from the cultural tapestry of Mexico to the innovation
+        hubs of the United States, I've not just visited these places—I've belonged to them.
+        <br><br>
+        This multicultural lens fuels everything at Corbellini Horizons. Whether I'm capturing
+        sonic energy at a live show, guiding you through hidden neighborhoods, or filming
+        cinematic 8K footage from the sky, I bring the perspective of someone who understands
+        what it means to truly belong.
       </p>
     </div>
     <div class="about-photo"></div>
   </div>
 </section>
 
-<!-- HORIZONS -->
+<!-- FIVE HORIZONS -->
 <section id="services">
   <div class="container">
     <h2>The Five Horizons</h2>
-    <p class="section-subtitle">Where artistry, authenticity, and excellence converge across five distinct pillars</p>
+    <p class="section-subtitle">
+      Where artistry, authenticity, and excellence converge across five distinct pillars
+    </p>
 
     <div class="grid grid-3">
-      <a class="card" href="#profile-artists"><div class="icon">🎵</div><h3>Artists Horizons</h3><p>Sonic storytelling for musicians.</p><small>View Portfolio ↓</small></a>
-      <a class="card" href="#profile-events"><div class="icon">🎉</div><h3>Events Horizons</h3><p>Milestones captured cinematically.</p><small>View Portfolio ↓</small></a>
-      <a class="card" href="#profile-companies"><div class="icon">🏢</div><h3>Companies Horizons</h3><p>Professional branding imagery.</p><small>View Portfolio ↓</small></a>
+      <a href="#profile-artists" class="card">
+        <h3>Artists Horizons</h3>
+        <p>Sonic storytelling and creative portraits for musicians and soloists.</p>
+        <div class="features">
+          <div>◆ Album Cover Photography</div>
+          <div>◆ Live Performance Documentation</div>
+          <div>◆ Artist Brand Development</div>
+        </div>
+        <span class="cta">View Portfolio ↓</span>
+      </a>
+
+      <a href="#profile-events" class="card">
+        <h3>Events Horizons</h3>
+        <p>Proposals and milestones captured with cinematic precision.</p>
+        <div class="features">
+          <div>◆ Proposal Photography</div>
+          <div>◆ Anniversary Celebrations</div>
+          <div>◆ Birthday & Milestone Events</div>
+        </div>
+        <span class="cta">View Portfolio ↓</span>
+      </a>
+
+      <a href="#profile-companies" class="card">
+        <h3>Companies Horizons</h3>
+        <p>Professional on-site headshots and cohesive group portraits.</p>
+        <div class="features">
+          <div>◆ Executive Headshots</div>
+          <div>◆ Team Group Portraits</div>
+          <div>◆ Brand Cohesion Strategy</div>
+        </div>
+        <span class="cta">View Portfolio ↓</span>
+      </a>
     </div>
 
     <div class="grid grid-2" style="margin-top:2rem">
-      <a class="card" href="#profile-travel"><div class="icon">🌍</div><h3>Travel Horizons</h3><p>Bespoke cultural experiences.</p><small>View Portfolio ↓</small></a>
-      <a class="card" href="#profile-aerial"><div class="icon">🚁</div><h3>Aerial Horizons</h3><p>8K cinematic drone visuals.</p><small>Coming Soon</small></a>
+      <a href="#profile-travel" class="card">
+        <h3>Travel Horizons</h3>
+        <p>Bespoke travel planning and local guiding through a local’s lens.</p>
+        <div class="features">
+          <div>◆ Custom Itinerary Design</div>
+          <div>◆ Translation & Cultural Bridge</div>
+          <div>◆ Hidden Gem Discovery</div>
+        </div>
+        <span class="cta">View Portfolio ↓</span>
+      </a>
+
+      <div class="card">
+        <h3>Aerial Horizons</h3>
+        <p>8K cinematic drone footage and immersive perspectives.</p>
+        <div class="features">
+          <div>◆ 8K Drone Cinematography</div>
+          <div>◆ 360° Panoramic Capture</div>
+          <div>◆ Property & Event Showcase</div>
+        </div>
+        <span class="cta">Coming Soon</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PROFILE -->
-<section id="profile">
+<!-- GEAR -->
+<section id="gear">
   <div class="container">
+    <h2>Gear Setup</h2>
+    <p class="section-subtitle">Professional tools for exceptional results</p>
 
-    <!-- ARTISTS -->
-    <div id="profile-artists" class="profile-section">
-      <h2>Artists Horizons</h2>
-      <div class="thumb-grid">
-        <a class="thumb" href="https://www.instagram.com/p/C44XaYqLkoVAM3D10uaTJWZepzf16boBjSwQRA0/" target="_blank">
-          <img src="https://www.instagram.com/p/C44XaYqLkoVAM3D10uaTJWZepzf16boBjSwQRA0/media/?size=l">
-        </a>
-        <a class="thumb" href="https://www.instagram.com/p/C44UeebRXESfb4qrwBhiUpUkFZ_CWUk7oyHkSE0/" target="_blank">
-          <img src="https://www.instagram.com/p/C44UeebRXESfb4qrwBhiUpUkFZ_CWUk7oyHkSE0/media/?size=l">
-        </a>
-        <a class="thumb" href="https://www.instagram.com/p/C5bZj9ZJ-c4d-xYqBGno2usRGL-AKml2yyygSE0/" target="_blank">
-          <img src="https://www.instagram.com/p/C5bZj9ZJ-c4d-xYqBGno2usRGL-AKml2yyygSE0/media/?size=l">
-        </a>
+    <div class="gear-grid">
+      <div class="card">
+        <h3>Canon System</h3>
+        <p>Full-frame professional DSLR for stunning photography and video.</p>
+      </div>
+      <div class="card">
+        <h3>Drone</h3>
+        <p>Cinema-grade aerial cinematography with advanced stabilization.</p>
+      </div>
+      <div class="card">
+        <h3>Mobile</h3>
+        <p>Pro-level mobile cinematography for spontaneous moments.</p>
+      </div>
+      <div class="card">
+        <h3>Post-Production</h3>
+        <p>The magic behind the frame.</p>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- EVENTS -->
-    <div id="profile-events" class="profile-section">
-      <h2>Events Horizons</h2>
-      <div class="thumb-grid">
-        <a class="thumb" href="https://www.instagram.com/p/C44CqADPsLRRz8GJ-uWA4bpQrC2aeD980ldrr00/" target="_blank">
-          <img src="https://www.instagram.com/p/C44CqADPsLRRz8GJ-uWA4bpQrC2aeD980ldrr00/media/?size=l">
-        </a>
-        <a class="thumb" href="https://www.instagram.com/p/CysAf2Vsf3s1tYqxnjhDF4tY_fubFkcAquWF8M0/" target="_blank">
-          <img src="https://www.instagram.com/p/CysAf2Vsf3s1tYqxnjhDF4tY_fubFkcAquWF8M0/media/?size=l">
-        </a>
-        <a class="thumb" href="https://www.instagram.com/p/DTdpixkEjJK5pQ3Y7oDom4DgfAvTMPH-idaVtg0/" target="_blank">
-          <img src="https://www.instagram.com/p/DTdpixkEjJK5pQ3Y7oDom4DgfAvTMPH-idaVtg0/media/?size=l">
-        </a>
-      </div>
-    </div>
+<!-- BOOKING -->
+<section id="booking">
+  <div class="container">
+    <h2>Book Your Horizon</h2>
+    <p class="section-subtitle">
+      Tell us about your vision. We'll craft an experience that transcends expectations.
+    </p>
 
-    <!-- COMPANIES -->
-    <div id="profile-companies" class="profile-section">
-      <h2>Companies Horizons</h2>
-      <div class="thumb-grid">
-        <a class="thumb" href="https://www.instagram.com/p/DTdrG4LklUtfrccWp0X3gYXKSvON4QgJs-BdVM0/" target="_blank">
-          <img src="https://www.instagram.com/p/DTdrG4LklUtfrccWp0X3gYXKSvON4QgJs-BdVM0/media/?size=l">
-        </a>
-        <a class="thumb" href="https://www.instagram.com/p/DTofEMejnoSE9hqVkFLkZCFuQfib8h1mO6NXsY0/" target="_blank">
-          <img src="https://www.instagram.com/p/DTofEMejnoSE9hqVkFLkZCFuQfib8h1mO6NXsY0/media/?size=l">
-        </a>
-        <a class="thumb" href="https://www.instagram.com/p/DTofB95DtRFPBOaHuAr4qlFuDMrpp4rOEO5YqA0/" target="_blank">
-          <img src="https://www.instagram.com/p/DTofB95DtRFPBOaHuAr4qlFuDMrpp4rOEO5YqA0/media/?size=l">
-        </a>
-      </div>
-    </div>
+    <form action="mailto:corbellini@gmail.com" method="post">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="email" placeholder="Email" required>
 
-    <!-- TRAVEL -->
-    <div id="profile-travel" class="profile-section">
-      <h2>Travel Horizons</h2>
-      <div class="thumb-grid">
-        <a class="thumb" href="https://www.instagram.com/p/DO-2-rSjliRmAmiu4cd_KJ38VzUBg-D14vTl4c0/" target="_blank">
-          <img src="https://www.instagram.com/p/DO-2-rSjliRmAmiu4cd_KJ38VzUBg-D14vTl4c0/media/?size=l">
-        </a>
-        <a class="thumb" href="https://www.instagram.com/p/Ba5Z_4fh2wzneDED9u8x4Edk_aiTFESMq4ClOU0/" target="_blank">
-          <img src="https://www.instagram.com/p/Ba5Z_4fh2wzneDED9u8x4Edk_aiTFESMq4ClOU0/media/?size=l">
-        </a>
-        <a class="thumb" href="https://www.instagram.com/p/Ba5ZEwfB_tNTXBIPFHVELlF50kTDOhQPuVePfk0/" target="_blank">
-          <img src="https://www.instagram.com/p/Ba5ZEwfB_tNTXBIPFHVELlF50kTDOhQPuVePfk0/media/?size=l">
-        </a>
-      </div>
-    </div>
+      <select name="service" required>
+        <option value="">Select Horizon</option>
+        <option>Artists Horizons – Sonic Storytelling</option>
+        <option>Events Horizons – Milestone Celebrations</option>
+        <option>Companies Horizons – Professional Branding</option>
+        <option>Travel Horizons – Bespoke Experiences</option>
+        <option>Aerial Horizons – 8K Drone Cinematography</option>
+        <option>Multiple Horizons – Combined Services</option>
+      </select>
 
+      <label>Preferred date</label>
+      <input type="date" name="date" required>
+
+      <textarea name="message" placeholder="Tell us about your project"></textarea>
+      <input type="submit" value="Request Booking" class="btn">
+    </form>
+
+    <p style="text-align:center;color:#aaa;margin-top:1.5rem">
+      We'll respond within 24 hours to discuss your vision.
+    </p>
   </div>
 </section>
 

@@ -236,6 +236,21 @@ input,select,textarea{
 input[type=date]{height:3.2rem}
 textarea{min-height:140px}
 input[type=submit]{border:none;cursor:pointer}
+/* Fix iOS date input width */
+input[type="date"] {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+}
+/* iOS Safari specific tweak */
+@supports (-webkit-touch-callout: none) {
+  input[type="date"] {
+    padding-right: 1rem;
+  }
+}
+
 
 /* FOOTER */
 footer{text-align:center;padding:3rem 1.5rem;color:#999}

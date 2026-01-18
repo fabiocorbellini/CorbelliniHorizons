@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Corbellini Horizons offers professional photography, cinematic video, and curated travel experiences across Artists, Events, Company, and Travel Horizons.">
 <!-- Cloudflare Turnstile -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
 <!-- Open Graph / Social Preview -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Corbellini Horizons">
@@ -637,23 +637,27 @@ footer a{color:#C5A059;text-decoration:none}
 <!-- Form Script -->
 <script>
 let turnstileToken = null;
+let turnstileWidgetId = null;
 
-window.onload = () => {
-  if (window.turnstile) {
-    turnstile.render("#turnstile-container", {
-      sitekey: "0x4AAAAAAACNQZMg-Gu9bIWjJ",
-      theme: "dark",
-      action: "booking",
-      callback: (token) => {
-        console.log("Turnstile success:", token);
-        turnstileToken = token;
-      },
-      "expired-callback": () => {
-        turnstileToken = null;
-      }
-    });
+document.addEventListener("DOMContentLoaded", () => {
+  if (!window.turnstile) {
+    console.error("Turnstile not loaded");
+    return;
   }
-};
+
+  turnstileWidgetId = turnstile.render("#turnstile-container", {
+    sitekey: "0x4AAAAAAACNQZMg-Gu9bIWjJ",
+    theme: "dark",
+    action: "booking",
+    callback: (token) => {
+      console.log("Turnstile token received");
+      turnstileToken = token;
+    },
+    "expired-callback": () => {
+      turnstileToken = null;
+    }
+  });
+});
 
 const form = document.getElementById("booking-form");
 const status = document.getElementById("form-status");
@@ -679,12 +683,18 @@ form.addEventListener("submit", async (e) => {
       body: formData
     });
 
-    if (!response.ok) throw new Error();
+    if (!response.ok) throw new Error("Request failed");
 
     status.textContent = "Thank you! We’ll respond within 24 hours.";
     status.className = "form-status show success";
+
     form.reset();
     turnstileToken = null;
+
+    // Reset Turnstile for next submission
+    if (window.turnstile && turnstileWidgetId !== null) {
+      turnstile.reset(turnstileWidgetId);
+    }
 
   } catch (err) {
     console.error(err);
@@ -693,8 +703,6 @@ form.addEventListener("submit", async (e) => {
   }
 });
 </script>
-
-
 
 <!-- Cloudflare Web Analytics -->
 <script

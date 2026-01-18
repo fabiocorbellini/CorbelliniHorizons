@@ -616,8 +616,10 @@ footer a{color:#C5A059;text-decoration:none}
       <!-- Honeypot anti-spam field (hidden) -->
       <input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none">
       <div class="cf-turnstile"
-        data-sitekey="0x4AAAAAAACNQZMg-Gu9bIWjJ"
-        data-callback="onTurnstileSuccess">
+           data-sitekey="0x4AAAAAAACNQZMg-Gu9bIWjJ"
+           data-callback="onTurnstileSuccess"
+           data-action="booking"
+           data-theme="dark">
       </div>
       <input type="submit" value="Request Booking" class="btn">
       <p id="form-status" class="form-status"></p>
@@ -635,7 +637,9 @@ footer a{color:#C5A059;text-decoration:none}
 document.addEventListener("DOMContentLoaded", () => {
   let turnstileToken = null;
 
+  // MUST be global for Turnstile
   window.onTurnstileSuccess = function (token) {
+    console.log("Turnstile success:", token);
     turnstileToken = token;
   };
 
@@ -651,7 +655,7 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     if (!turnstileToken) {
-      status.textContent = "Security check in progress. Please try again.";
+      status.textContent = "Security check in progress. Please wait a moment.";
       status.className = "form-status show error";
       return;
     }
@@ -676,12 +680,14 @@ document.addEventListener("DOMContentLoaded", () => {
       turnstileToken = null;
 
     } catch (err) {
+      console.error(err);
       status.textContent = "Something went wrong. Please try again.";
       status.className = "form-status show error";
     }
   });
 });
 </script>
+
 
 <!-- Cloudflare Web Analytics -->
 <script

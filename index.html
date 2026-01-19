@@ -741,7 +741,8 @@ footer a{color:#C5A059;text-decoration:none}
 // 1. Define these at the top so ALL functions can use them
 const status = document.getElementById("form-status");
 let turnstileToken = null;
-
+const form = document.getElementById("booking-form");
+  
 // This function is called by Cloudflare when the user passes the check
 function onTurnstileSuccess(token) {
   console.log("SUCCESS: Cloudflare issued a token!");
@@ -750,9 +751,6 @@ function onTurnstileSuccess(token) {
   status.textContent = ""; 
   status.className = "form-status";
 }
-
-const form = document.getElementById("booking-form");
-const status = document.getElementById("form-status");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();

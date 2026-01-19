@@ -698,6 +698,8 @@ let turnstileToken = null;
 window.onTurnstileSuccess = function(token) {
   console.log("SUCCESS: Cloudflare issued a token!", token);
   turnstileToken = token;
+
+  // This line is vital to clear the "Security check" message
   const statusEl = document.getElementById("form-status");
   if (statusEl) {
     statusEl.textContent = ""; 

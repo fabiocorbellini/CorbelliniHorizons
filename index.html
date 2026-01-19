@@ -767,7 +767,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <option value="Aerial Horizons">Aerial Horizons</option>
       </select>
 
-      <input type="date" name="date" required>
+      <input type="text" name="date" placeholder="Select Date (MM/DD/YYYY)" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" required>
       <textarea name="message" placeholder="Tell us about your project" required></textarea>
 
       <!-- Turnstile renders HERE -->

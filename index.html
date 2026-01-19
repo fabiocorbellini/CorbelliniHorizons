@@ -700,11 +700,11 @@ window.onTurnstileSuccess = function(token) {
   console.log("SUCCESS: Cloudflare issued a token!", token);
   turnstileToken = token;
   
-  // Look for the status element ONLY when the token arrives
-  const status = document.getElementById("form-status");
-  if (status) {
-    status.textContent = ""; 
-    status.className = "form-status";
+  // Use 'const' here to define 'status' so the function can use it
+  const statusElement = document.getElementById("form-status"); 
+  if (statusElement) {
+    statusElement.textContent = ""; 
+    statusElement.className = "form-status";
   }
 };
 

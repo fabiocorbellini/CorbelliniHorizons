@@ -737,28 +737,35 @@ footer a{color:#C5A059;text-decoration:none}
 
 <!-- Form Script -->
 <script>
-
-// 1. Define these at the top so ALL functions can use them
+// 1. Define variables at the top so they are accessible everywhere
 const status = document.getElementById("form-status");
-let turnstileToken = null;
 const form = document.getElementById("booking-form");
-  
-// This function is called by Cloudflare when the user passes the check
-function onTurnstileSuccess(token) {
-  console.log("SUCCESS: Cloudflare issued a token!");
+let turnstileToken = null;
+
+// 2. This is the SINGLE global function Cloudflare looks for
+window.onTurnstileSuccess = function(token) {
+  console.log("SUCCESS: Cloudflare issued a token!", token);
   turnstileToken = token;
-  // This clears the "Please complete the security check" red text immediately
-  status.textContent = ""; 
-  status.className = "form-status";
-}
+  
+  // Clear any "Please wait" or error messages immediately
+  if (status) {
+    status.textContent = ""; 
+    status.className = "form-status";
+  }
+};
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   // 1. Validation check
   if (!turnstileToken) {
-    status.textContent = "Please complete the security check.";
+    status.textContent = "Security check in progress. Please wait a moment.";
     status.className = "form-status show error";
+    
+    // Force a reset if the widget didn't load or is stuck
+    if (typeof turnstile !== 'undefined') {
+        turnstile.reset();
+    }
     return;
   }
 
@@ -767,11 +774,11 @@ form.addEventListener("submit", async (e) => {
 
   try {
     const formData = new FormData(form);
-    // Note: No need to append manually if the .cf-turnstile div is inside the form!
+    // Turnstile automatically adds 'cf-turnstile-response' to FormData if the div is inside the form
 
     const response = await fetch("/api/book", {
       method: "POST",
-      body: formData // Sending as Multi-part Form Data
+      body: formData 
     });
 
     if (!response.ok) throw new Error("Server responded with error");
@@ -782,7 +789,7 @@ form.addEventListener("submit", async (e) => {
     form.reset();
     turnstileToken = null;
     
-    // IMPORTANT: Reset the Turnstile widget visually for the next use
+    // Reset Turnstile for the next submission
     if (typeof turnstile !== "undefined") {
         turnstile.reset();
     }

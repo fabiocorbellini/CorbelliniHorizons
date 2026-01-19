@@ -347,13 +347,18 @@ footer a{color:#C5A059;text-decoration:none}
 <nav>
   <div class="nav-inner">
     <strong class="brand-gold">Corbellini Horizons</strong>
-    <div>
-      <a href="#home">Home</a>
-      <a href="#profile">Profile</a>
-      <a href="#horizons">Horizons</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#gear">Gear</a>
-      <a href="#booking">Booking</a>
+    <div style="display: flex; align-items: center;">
+      <select id="lang-select" style="width: auto; margin-bottom: 0; padding: 4px 8px; background: #000; border: 1px solid #C5A059; color: #fff; font-size: 0.75rem; margin-right: 1rem; border-radius: 4px; cursor: pointer;">
+        <option value="en">EN</option>
+        <option value="pt">PT</option>
+        <option value="es">ES</option>
+      </select>
+      
+      <a href="#home" data-t="nav_home">Home</a>
+      <a href="#profile" data-t="nav_profile">Profile</a>
+      <a href="#horizons" data-t="nav_horizons">Horizons</a>
+      <a href="#portfolio" data-t="nav_portfolio">Portfolio</a>
+      <a href="#booking" data-t="nav_booking">Booking</a>
     </div>
   </div>
 </nav>
@@ -795,5 +800,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <!-- TUNRSTILE ASYNC -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  
+
+<!-- TRANSLATIONS -->
+<script>
+const translations = {
+  en: {
+    nav_home: "Home", nav_profile: "Profile", nav_horizons: "Horizons", nav_portfolio: "Portfolio", nav_booking: "Booking",
+    hero_h1: "Don’t Just Visit. <span class='gold-text'>Belong.</span><br>Don’t Just Record. <span class='gold-text'>Immortalize.</span>",
+    hero_p: "Professional Photography, Cinematography & Curated Travel",
+    hero_btn: "Book Your Horizon",
+    profile_h2: "Profile",
+    profile_text: "I'm not just a photographer... I've lived across four countries on three continents. This multicultural lens fuels everything at Corbellini Horizons."
+  },
+  pt: {
+    nav_home: "Início", nav_profile: "Perfil", nav_horizons: "Horizontes", nav_portfolio: "Portfólio", nav_booking: "Reserva",
+    hero_h1: "Não Apenas Visite. <span class='gold-text'>Pertença.</span><br>Não Apenas Grave. <span class='gold-text'>Imortalize.</span>",
+    hero_p: "Fotografia Profissional, Cinematografia e Viagens Curadas",
+    hero_btn: "Reserve Seu Horizonte",
+    profile_h2: "Perfil",
+    profile_text: "Não sou apenas um fotógrafo... vivi em quatro países em três continentes. Essa lente multicultural impulsiona tudo na Corbellini Horizons."
+  },
+  es: {
+    nav_home: "Inicio", nav_profile: "Perfil", nav_horizons: "Horizontes", nav_portfolio: "Portafolio", nav_booking: "Reserva",
+    hero_h1: "No Solo Visites. <span class='gold-text'>Pertenece.</span><br>No Solo Grabe. <span class='gold-text'>Inmortalice.</span>",
+    hero_p: "Fotografía Profesional, Cinematografía y Viajes Curados",
+    hero_btn: "Reserve su Horizonte",
+    profile_h2: "Perfil",
+    profile_text: "No soy solo un fotógrafo... he vivido en cuatro países en tres continentes. Esta lente multicultural impulsa todo en Corbellini Horizons."
+  }
+};
+
+document.getElementById('lang-select').addEventListener('change', (e) => {
+  const lang = e.target.value;
+  const dict = translations[lang];
+
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if (dict[key]) el.innerHTML = dict[key];
+  });
+});
+</script>
+
 </body>

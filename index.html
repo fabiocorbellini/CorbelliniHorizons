@@ -233,6 +233,12 @@ h2{
   border-radius:18px;
   transition:transform .35s ease;
 }
+.thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .thumb:hover img{
   transform:scale(1.05);
 }
@@ -592,6 +598,7 @@ footer a{color:#C5A059;text-decoration:none}
            target="_blank"
            class="thumb video-thumb">
           <video
+            autoplay 
             muted
             loop
             playsinline
@@ -606,6 +613,7 @@ footer a{color:#C5A059;text-decoration:none}
            target="_blank"
            class="thumb video-thumb">
           <video
+            autoplay
             muted
             loop
             playsinline
@@ -620,6 +628,7 @@ footer a{color:#C5A059;text-decoration:none}
            target="_blank"
            class="thumb video-thumb">
           <video
+            autoplay
             muted
             loop
             playsinline

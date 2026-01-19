@@ -692,23 +692,19 @@ footer a{color:#C5A059;text-decoration:none}
 
 <!-- Form Script -->
 <script>
-// 1. Define the token variable at the top
 let turnstileToken = null;
 
-// 2. The global function Cloudflare looks for
+// This function clears the error message as soon as Turnstile passes
 window.onTurnstileSuccess = function(token) {
   console.log("SUCCESS: Cloudflare issued a token!", token);
   turnstileToken = token;
-  
-  // Use 'const' here to define 'status' so the function can use it
-  const statusElement = document.getElementById("form-status"); 
-  if (statusElement) {
-    statusElement.textContent = ""; 
-    statusElement.className = "form-status";
+  const statusEl = document.getElementById("form-status");
+  if (statusEl) {
+    statusEl.textContent = ""; 
+    statusEl.className = "form-status";
   }
 };
 
-// 3. Wait for the form to exist before adding the listener
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("booking-form");
   const status = document.getElementById("form-status");
@@ -721,7 +717,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!turnstileToken) {
       status.textContent = "Security check in progress. Please wait a moment.";
       status.className = "form-status show error";
-      if (typeof turnstile !== 'undefined') turnstile.reset();
       return;
     }
 
@@ -729,23 +724,21 @@ document.addEventListener("DOMContentLoaded", () => {
     status.className = "form-status show";
 
     try {
-      const formData = new FormData(form);
       const response = await fetch("/api/book", {
         method: "POST",
-        body: formData 
+        body: new FormData(form)
       });
 
-      if (!response.ok) throw new Error("Server responded with error");
-
-      status.textContent = "Thank you! We’ll respond within 24 hours.";
-      status.className = "form-status show success";
-      form.reset();
-      turnstileToken = null;
-      
-      if (typeof turnstile !== "undefined") turnstile.reset();
-
+      if (response.ok) {
+        status.textContent = "Thank you! We’ll respond within 24 hours.";
+        status.className = "form-status show success";
+        form.reset();
+        turnstileToken = null;
+        if (typeof turnstile !== "undefined") turnstile.reset();
+      } else {
+        throw new Error("Server error");
+      }
     } catch (err) {
-      console.error("Submission error:", err);
       status.textContent = "Submission failed. Please try again.";
       status.className = "form-status show error";
     }

@@ -739,13 +739,17 @@ footer a{color:#C5A059;text-decoration:none}
 <script>
 
 let turnstileToken = null;
+// 1. Define these at the top so ALL functions can use them
+const status = document.getElementById("form-status");
+let turnstileToken = null;
 
 // This function is called by Cloudflare when the user passes the check
 function onTurnstileSuccess(token) {
-  console.log("Turnstile successfully verified.");
+  console.log("SUCCESS: Cloudflare issued a token!");
   turnstileToken = token;
-  // Clear any previous error messages when they pass
-  document.getElementById("form-status").className = "form-status";
+  // This clears the "Please complete the security check" red text immediately
+  status.textContent = ""; 
+  status.className = "form-status";
 }
 
 const form = document.getElementById("booking-form");

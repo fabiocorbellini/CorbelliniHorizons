@@ -690,6 +690,69 @@ footer a{color:#C5A059;text-decoration:none}
   </div>
 </section>
 
+<!-- Form Script -->
+<script>
+// 1. Define the token variable at the top
+let turnstileToken = null;
+
+// 2. The global function Cloudflare looks for
+window.onTurnstileSuccess = function(token) {
+  console.log("SUCCESS: Cloudflare issued a token!", token);
+  turnstileToken = token;
+  
+  // Look for the status element ONLY when the token arrives
+  const status = document.getElementById("form-status");
+  if (status) {
+    status.textContent = ""; 
+    status.className = "form-status";
+  }
+};
+
+// 3. Wait for the form to exist before adding the listener
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("booking-form");
+  const status = document.getElementById("form-status");
+
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!turnstileToken) {
+      status.textContent = "Security check in progress. Please wait a moment.";
+      status.className = "form-status show error";
+      if (typeof turnstile !== 'undefined') turnstile.reset();
+      return;
+    }
+
+    status.textContent = "Sending request…";
+    status.className = "form-status show";
+
+    try {
+      const formData = new FormData(form);
+      const response = await fetch("/api/book", {
+        method: "POST",
+        body: formData 
+      });
+
+      if (!response.ok) throw new Error("Server responded with error");
+
+      status.textContent = "Thank you! We’ll respond within 24 hours.";
+      status.className = "form-status show success";
+      form.reset();
+      turnstileToken = null;
+      
+      if (typeof turnstile !== "undefined") turnstile.reset();
+
+    } catch (err) {
+      console.error("Submission error:", err);
+      status.textContent = "Submission failed. Please try again.";
+      status.className = "form-status show error";
+    }
+  });
+});
+</script>
+  
 <!-- BOOKING -->
 <section id="booking">
   <div class="container">
@@ -735,69 +798,4 @@ footer a{color:#C5A059;text-decoration:none}
   <a href="mailto:corbellini@gmail.com?subject=Corbellini%20Horizons">Corbellini</a>
 </footer>
 
-<!-- Form Script -->
-<script>
-// 1. Define variables at the top so they are accessible everywhere
-const status = document.getElementById("form-status");
-const form = document.getElementById("booking-form");
-let turnstileToken = null;
-
-// 2. This is the SINGLE global function Cloudflare looks for
-window.onTurnstileSuccess = function(token) {
-  console.log("SUCCESS: Cloudflare issued a token!", token);
-  turnstileToken = token;
-  
-  // Clear any "Please wait" or error messages immediately
-  if (status) {
-    status.textContent = ""; 
-    status.className = "form-status";
-  }
-};
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  // 1. Validation check
-  if (!turnstileToken) {
-    status.textContent = "Security check in progress. Please wait a moment.";
-    status.className = "form-status show error";
-    
-    // Force a reset if the widget didn't load or is stuck
-    if (typeof turnstile !== 'undefined') {
-        turnstile.reset();
-    }
-    return;
-  }
-
-  status.textContent = "Sending request…";
-  status.className = "form-status show";
-
-  try {
-    const formData = new FormData(form);
-    // Turnstile automatically adds 'cf-turnstile-response' to FormData if the div is inside the form
-
-    const response = await fetch("/api/book", {
-      method: "POST",
-      body: formData 
-    });
-
-    if (!response.ok) throw new Error("Server responded with error");
-
-    status.textContent = "Thank you! We’ll respond within 24 hours.";
-    status.className = "form-status show success";
-
-    form.reset();
-    turnstileToken = null;
-    
-    // Reset Turnstile for the next submission
-    if (typeof turnstile !== "undefined") {
-        turnstile.reset();
-    }
-
-  } catch (err) {
-    console.error("Submission error:", err);
-    status.textContent = "Submission failed. Please try again.";
-    status.className = "form-status show error";
-  }
-});
-</script>
+</body>

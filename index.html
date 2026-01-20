@@ -43,40 +43,71 @@ body{font-family:Inter,sans-serif;background:#0b0b0b;color:#f5f5f5}
 }
 
 /* NAV */
-nav{
-  position:fixed;top:0;width:100%;z-index:50;
-  background:rgba(11,11,11,.65);
-  backdrop-filter:blur(12px);
+/* NAV BASE (Desktop) */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 50;
+  background: rgba(11, 11, 11, 0.8);
+  backdrop-filter: blur(12px);
 }
-.nav-inner{
-  max-width:1200px;margin:auto;
-  padding:1rem 1.5rem;
-  display:flex;justify-content:space-between;align-items:center;
+.nav-inner {
+  max-width: 1200px; margin: auto;
+  padding: 1rem 1.5rem;
+  display: flex; justify-content: space-between; align-items: center;
 }
-.nav-inner a{
-  color:#fff;text-decoration:none;
-  margin-left:1.2rem;font-weight:500;
+.nav-links-wrapper {
+  display: flex; align-items: center; gap: 1.2rem;
 }
-.nav-inner a:hover{color:#C5A059}
-section{
-  scroll-margin-top:90px;
+.nav-links-wrapper a {
+  color: #fff; text-decoration: none; font-weight: 500; transition: 0.3s;
 }
+.nav-links-wrapper a:hover { color: #C5A059; }
+.desktop-only { display: inline; }
+.mobile-only { display: none; }
+
+/* MOBILE ONLY GRID (Under 768px) */
 @media (max-width: 768px) {
+  .desktop-only { display: none; }
+  .mobile-only { display: block; }
+  
   .nav-inner {
-    flex-direction: column; /* Stack name on top of links */
-    gap: 0.5rem;
-    padding: 0.8rem 1rem;
+    padding: 0.5rem 1rem;
   }
-  .nav-inner div {
-    width: 100%;
-    justify-content: center; /* Center the links and language selector */
-    flex-wrap: wrap; /* Allow links to wrap if they are too long */
-    gap: 0.8rem;
+
+  /* Force Brand to stack on the left */
+  .brand-container {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    line-height: 1;
+    flex-shrink: 0;
   }
-  .nav-inner a {
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    font-size: 0.9rem;
+  .brand-container span {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+
+  /* Force Menu to 2-line grid on the right */
+  .nav-links-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, auto); /* 3 columns across */
+    gap: 0.4rem 0.8rem;
+    justify-items: end;
+    text-align: right;
+  }
+  
+  .nav-links-wrapper a {
+    font-size: 0.85rem;
+    margin: 0;
+  }
+
+  .lang-pill {
+    background: transparent;
+    border: 1px solid #C5A059;
+    color: #C5A059;
+    border-radius: 4px;
+    padding: 1px 4px;
+    font-size: 0.7rem;
   }
 }
   
@@ -364,19 +395,24 @@ footer a{color:#C5A059;text-decoration:none}
 
 <nav>
   <div class="nav-inner">
-    <strong class="brand-gold">Corbellini Horizons</strong>
-    <div style="display: flex; align-items: center justify-content: flex-end;">
-      <select id="lang-select" style="width: auto; margin-bottom: 0; padding: 4px 8px; background: #000; border: 1px solid #C5A059; color: #fff; font-size: 0.75rem; margin-right: 1rem; border-radius: 4px; cursor: pointer;">
-        <option value="en">EN</option>
-        <option value="pt">PT</option>
-        <option value="es">ES</option>
-      </select>
-      
+    <a href="#home" class="brand-container">
+      <span class="brand-gold">Corbellini</span>
+      <span class="brand-gold mobile-only">Horizons</span>
+      <span class="brand-gold desktop-only">Horizons</span>
+    </a>
+
+    <div class="nav-links-wrapper">
       <a href="#home" data-t="nav_home">Home</a>
       <a href="#profile" data-t="nav_profile">Profile</a>
       <a href="#horizons" data-t="nav_horizons">Horizons</a>
       <a href="#portfolio" data-t="nav_portfolio">Portfolio</a>
       <a href="#booking" data-t="nav_booking">Booking</a>
+      
+      <select id="lang-select" class="lang-pill">
+        <option value="en">EN</option>
+        <option value="pt">PT</option>
+        <option value="es">ES</option>
+      </select>
     </div>
   </div>
 </nav>

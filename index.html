@@ -61,7 +61,25 @@ nav{
 section{
   scroll-margin-top:90px;
 }
-
+@media (max-width: 768px) {
+  .nav-inner {
+    flex-direction: column; /* Stack name on top of links */
+    gap: 0.5rem;
+    padding: 0.8rem 1rem;
+  }
+  .nav-inner div {
+    width: 100%;
+    justify-content: center; /* Center the links and language selector */
+    flex-wrap: wrap; /* Allow links to wrap if they are too long */
+    gap: 0.8rem;
+  }
+  .nav-inner a {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+  }
+}
+  
 /* HERO */
 .hero{
   position:relative;min-height:100vh;
@@ -347,7 +365,7 @@ footer a{color:#C5A059;text-decoration:none}
 <nav>
   <div class="nav-inner">
     <strong class="brand-gold">Corbellini Horizons</strong>
-    <div style="display: flex; align-items: center;">
+    <div style="display: flex; align-items: center justify-content: flex-end;">
       <select id="lang-select" style="width: auto; margin-bottom: 0; padding: 4px 8px; background: #000; border: 1px solid #C5A059; color: #fff; font-size: 0.75rem; margin-right: 1rem; border-radius: 4px; cursor: pointer;">
         <option value="en">EN</option>
         <option value="pt">PT</option>

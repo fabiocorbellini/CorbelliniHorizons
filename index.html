@@ -80,7 +80,9 @@ nav {
   display: flex; justify-content: space-between; align-items: center;
 }
 .nav-links-wrapper {
-  display: flex; align-items: center; gap: 1.2rem;
+  display: flex; 
+  align-items: center; /* THIS is important */
+  gap: 1.2rem;
 }
 .nav-links-wrapper a {
   color: #fff; text-decoration: none; font-weight: 500; transition: 0.3s;
@@ -93,7 +95,7 @@ nav {
 @media (max-width: 768px) {
   .desktop-only { display: none; }
   .mobile-only { display: block; }
-  
+
   .nav-inner {
     padding: 0.5rem 1rem;
   }
@@ -133,6 +135,7 @@ nav {
     border-radius: 4px;
     padding: 1px 4px;
     font-size: 0.7rem;
+    margin-top: 2px; 
   }
 }
   

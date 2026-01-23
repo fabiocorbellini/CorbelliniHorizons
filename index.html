@@ -4,6 +4,7 @@
 <meta charset="UTF-8"> 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Corbellini Horizons offers professional photography, cinematic video, and curated travel experiences across Artists, Events, Company, and Travel Horizons.">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="canonical" href="https://corbellini.com.br/" />
 
 <!-- Open Graph / Social Preview -->
@@ -13,6 +14,7 @@
 <meta property="og:description" content="Professional Photography, Cinematic Video & Curated Travel Experiences. Don’t just visit. Belong.">
 <meta property="og:url" content="https://corbellini.com.br">
 <meta property="og:image" content="https://media.corbellini.com.br/profile-photo.jpg">
+<meta property="og:locale" content="en_US">
 
 <!-- WhatsApp / Instagram compatibility -->
 <meta property="og:image:width" content="1200">
@@ -465,7 +467,7 @@ footer a{color:#C5A059;text-decoration:none}
 <section id="profile">
   <div class="container profile-grid">
     <div>
-      <h2 data-t'"profile_h2">Profile</h2>
+      <h2 data-t="profile_h2">Profile</h2>
       <p class="section-subtitle" data-t="profile_subtitle">Where Moments Become Masterpieces</p>
       <p data-t="profile_p">
         I'm not just a photographer or travel guide—I'm your local friend who has lived across
@@ -822,8 +824,8 @@ document.addEventListener("DOMContentLoaded", () => {
     <p  data-t="form_subtitle" class="section-subtitle">Tell us about your vision. We'll craft an experience that transcends expectations.</p>
     <form method="POST" action="/api/book" id="booking-form">
 
-      <input name="name" data-placeholder="form_name" placeholder="Name" required>
-      <input name="email" type="email" data-placeholder="form_email" placeholder="Email" required>
+      <input name="name" autocomplete="name" data-placeholder="form_name" placeholder="Name" required>
+      <input name="email" autocomplete="email" type="email" data-placeholder="form_email" placeholder="Email" required>
 
       <select name="horizon" required>
         <option value="" data-t="form_horizon">Select Horizon</option>
